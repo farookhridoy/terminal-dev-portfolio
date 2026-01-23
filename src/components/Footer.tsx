@@ -2,19 +2,21 @@ import { Terminal, Heart } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="py-8 px-4 border-t border-border">
+    <footer className="py-8 px-4 border-t border-border" role="contentinfo">
       <div className="container max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
-            <Terminal className="w-4 h-4 text-primary" />
-            <span>© 2024 developer.portfolio</span>
+            <Terminal className="w-4 h-4 text-primary" aria-hidden="true" />
+            <span>© {new Date().getFullYear()} developer.portfolio</span>
           </div>
           
           <div className="flex items-center gap-1 font-mono text-sm text-muted-foreground">
             <span>Crafted with</span>
-            <Heart className="w-4 h-4 text-terminal-red fill-terminal-red" />
-            <span>and lots of</span>
-            <span className="text-terminal-yellow">☕</span>
+            <Heart className="w-4 h-4 text-terminal-red fill-terminal-red" aria-hidden="true" />
+            <span className="sr-only">love</span>
+            <span aria-hidden="true">and lots of</span>
+            <span className="text-terminal-yellow" aria-hidden="true">☕</span>
+            <span className="sr-only">and coffee</span>
           </div>
         </div>
       </div>
