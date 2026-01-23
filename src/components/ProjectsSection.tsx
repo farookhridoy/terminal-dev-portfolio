@@ -30,23 +30,23 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-20 px-4">
+    <section id="projects" className="py-20 px-4" aria-labelledby="projects-heading">
       <div className="container max-w-6xl mx-auto">
-        <motion.div
+        <motion.header
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-mono mb-4">
-            <span className="text-primary">$</span> find ./projects -type featured
+          <h2 id="projects-heading" className="text-3xl md:text-4xl font-bold font-mono mb-4">
+            <span className="text-primary" aria-hidden="true">$</span> find ./projects -type featured
           </h2>
           <p className="text-muted-foreground">Some of the notable projects I've worked on</p>
-        </motion.div>
+        </motion.header>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6" role="list" aria-label="Featured projects">
           {projects.map((project, index) => (
-            <motion.div
+            <motion.article
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -54,52 +54,65 @@ const ProjectsSection = () => {
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
               className="group p-6 bg-card rounded-lg border border-border hover:border-primary/50 transition-all"
+              aria-labelledby={`project-${index}-title`}
             >
-              <div className="flex items-start justify-between mb-4">
+              <header className="flex items-start justify-between mb-4">
                 <div>
                   <span className="text-xs font-mono text-terminal-yellow bg-secondary px-2 py-1 rounded">
                     {project.type}
                   </span>
                 </div>
                 <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="p-2 hover:text-primary transition-colors">
-                    <Github className="w-5 h-5" />
-                  </button>
-                  <button className="p-2 hover:text-primary transition-colors">
-                    <ExternalLink className="w-5 h-5" />
-                  </button>
+                  <a 
+                    href="#" 
+                    className="p-2 hover:text-primary transition-colors" 
+                    aria-label={`View ${project.title} source code on GitHub`}
+                  >
+                    <Github className="w-5 h-5" aria-hidden="true" />
+                  </a>
+                  <a 
+                    href="#" 
+                    className="p-2 hover:text-primary transition-colors"
+                    aria-label={`View ${project.title} live demo`}
+                  >
+                    <ExternalLink className="w-5 h-5" aria-hidden="true" />
+                  </a>
                 </div>
-              </div>
+              </header>
 
-              <h3 className="text-xl font-semibold text-terminal-cyan mb-2 group-hover:text-glow-accent transition-all">
+              <h3 
+                id={`project-${index}-title`}
+                className="text-xl font-semibold text-terminal-cyan mb-2 group-hover:text-glow-accent transition-all"
+              >
                 {project.title}
               </h3>
               <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
 
-              <div className="flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-2" aria-label="Technologies used">
                 {project.tech.map((tech) => (
-                  <span
+                  <li
                     key={tech}
                     className="px-2 py-1 text-xs font-mono text-terminal-green bg-secondary/50 rounded border border-primary/20"
                   >
                     {tech}
-                  </span>
+                  </li>
                 ))}
-              </div>
-            </motion.div>
+              </ul>
+            </motion.article>
           ))}
         </div>
 
-        <motion.div
+        <motion.footer
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="text-center mt-8"
         >
           <p className="text-muted-foreground font-mono text-sm">
-            <span className="text-terminal-gray">// And 96+ more projects...</span>
+            <span className="text-terminal-gray" aria-hidden="true">// And 96+ more projects...</span>
+            <span className="sr-only">And over 96 more projects completed</span>
           </p>
-        </motion.div>
+        </motion.footer>
       </div>
     </section>
   );

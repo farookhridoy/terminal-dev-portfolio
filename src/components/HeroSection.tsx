@@ -13,19 +13,22 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20 terminal-gradient relative overflow-hidden">
+    <section 
+      className="min-h-screen flex items-center justify-center px-4 py-20 terminal-gradient relative overflow-hidden"
+      aria-labelledby="hero-heading"
+    >
       {/* Background scanlines effect */}
-      <div className="absolute inset-0 scanlines opacity-50" />
+      <div className="absolute inset-0 scanlines opacity-50" aria-hidden="true" />
       
       {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-primary/30 rounded-full"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
             }}
             animate={{
               y: [null, Math.random() * -100, Math.random() * 100],
@@ -44,7 +47,7 @@ const HeroSection = () => {
         <TerminalWindow title="~/portfolio/about.sh">
           <div className="space-y-4 text-sm md:text-base">
             <div className="flex items-start gap-2">
-              <span className="text-primary">$</span>
+              <span className="text-primary" aria-hidden="true">$</span>
               {showCommand && (
                 <TypeWriter 
                   text="whoami --verbose" 
@@ -55,44 +58,56 @@ const HeroSection = () => {
             </div>
 
             {showDetails && (
-              <motion.div
+              <motion.article
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 className="space-y-3 mt-6"
               >
                 <div className="flex flex-col gap-1">
-                  <span className="text-terminal-cyan">// Output:</span>
+                  <span className="text-terminal-cyan" aria-hidden="true">// Output:</span>
                 </div>
                 
-                <div className="pl-4 border-l-2 border-primary/30 space-y-2">
-                  <p>
-                    <span className="text-terminal-purple">name:</span>{" "}
-                    <span className="text-terminal-yellow">"Senior Full-Stack Developer"</span>
-                  </p>
-                  <p>
-                    <span className="text-terminal-purple">experience:</span>{" "}
-                    <span className="text-terminal-orange">8</span>{" "}
-                    <span className="text-muted-foreground">// years of crafting digital solutions</span>
-                  </p>
-                  <p>
-                    <span className="text-terminal-purple">projects:</span>{" "}
-                    <span className="text-terminal-orange">100+</span>{" "}
-                    <span className="text-muted-foreground">// successful deliveries</span>
-                  </p>
-                  <p>
-                    <span className="text-terminal-purple">specialization:</span>{" "}
-                    <span className="text-terminal-yellow">"ERP & Web Development"</span>
-                  </p>
-                </div>
+                <dl className="pl-4 border-l-2 border-primary/30 space-y-2">
+                  <div>
+                    <dt className="sr-only">Name</dt>
+                    <dd>
+                      <span className="text-terminal-purple">name:</span>{" "}
+                      <span className="text-terminal-yellow">"Senior Full-Stack Developer"</span>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="sr-only">Experience</dt>
+                    <dd>
+                      <span className="text-terminal-purple">experience:</span>{" "}
+                      <span className="text-terminal-orange">8</span>{" "}
+                      <span className="text-muted-foreground">// years of crafting digital solutions</span>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="sr-only">Projects Completed</dt>
+                    <dd>
+                      <span className="text-terminal-purple">projects:</span>{" "}
+                      <span className="text-terminal-orange">100+</span>{" "}
+                      <span className="text-muted-foreground">// successful deliveries</span>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="sr-only">Specialization</dt>
+                    <dd>
+                      <span className="text-terminal-purple">specialization:</span>{" "}
+                      <span className="text-terminal-yellow">"ERP & Web Development"</span>
+                    </dd>
+                  </div>
+                </dl>
 
-                <motion.div 
+                <motion.header 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                   className="pt-6"
                 >
-                  <h1 className="text-3xl md:text-5xl font-bold text-glow mb-4">
+                  <h1 id="hero-heading" className="text-3xl md:text-5xl font-bold text-glow mb-4">
                     Building the Future,
                     <br />
                     <span className="text-primary">One Line at a Time</span>
@@ -102,7 +117,7 @@ const HeroSection = () => {
                     and team leadership. Transforming complex business requirements into 
                     elegant, scalable software.
                   </p>
-                </motion.div>
+                </motion.header>
 
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -113,17 +128,19 @@ const HeroSection = () => {
                   <a
                     href="#projects"
                     className="px-6 py-3 bg-primary text-primary-foreground font-mono text-sm rounded hover:bg-primary/90 transition-all hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)]"
+                    aria-label="View my projects"
                   >
                     ./view_projects.sh
                   </a>
                   <a
                     href="#contact"
                     className="px-6 py-3 border border-primary text-primary font-mono text-sm rounded hover:bg-primary/10 transition-all"
+                    aria-label="Contact me"
                   >
                     ./contact_me.sh
                   </a>
                 </motion.div>
-              </motion.div>
+              </motion.article>
             )}
           </div>
         </TerminalWindow>

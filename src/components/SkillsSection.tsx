@@ -27,12 +27,13 @@ const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: 
     viewport={{ once: true }}
     transition={{ delay, duration: 0.5 }}
     className="space-y-2"
+    role="listitem"
   >
     <div className="flex justify-between text-sm">
       <span className="text-terminal-cyan">{name}</span>
-      <span className="text-terminal-yellow">{level}%</span>
+      <span className="text-terminal-yellow" aria-label={`${level} percent proficiency`}>{level}%</span>
     </div>
-    <div className="h-2 bg-secondary rounded-full overflow-hidden">
+    <div className="h-2 bg-secondary rounded-full overflow-hidden" role="progressbar" aria-valuenow={level} aria-valuemin={0} aria-valuemax={100} aria-label={`${name} skill level`}>
       <motion.div
         initial={{ width: 0 }}
         whileInView={{ width: `${level}%` }}
@@ -47,47 +48,53 @@ const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: 
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="py-20 px-4">
+    <section id="skills" className="py-20 px-4" aria-labelledby="skills-heading">
       <div className="container max-w-6xl mx-auto">
-        <motion.div
+        <motion.header
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-mono mb-4">
-            <span className="text-primary">$</span> cat skills.json
+          <h2 id="skills-heading" className="text-3xl md:text-4xl font-bold font-mono mb-4">
+            <span className="text-primary" aria-hidden="true">$</span> cat skills.json
           </h2>
           <p className="text-muted-foreground">Core competencies and technical expertise</p>
-        </motion.div>
+        </motion.header>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <TerminalWindow title="backend.skills">
-            <div className="space-y-4">
-              <div className="text-terminal-purple mb-4">{"// Backend Technologies"}</div>
-              {skills.backend.map((skill, index) => (
-                <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
-              ))}
-            </div>
-          </TerminalWindow>
+        <div className="grid md:grid-cols-3 gap-6" role="list" aria-label="Skills categories">
+          <article aria-labelledby="backend-skills">
+            <TerminalWindow title="backend.skills">
+              <div className="space-y-4" role="list">
+                <h3 id="backend-skills" className="text-terminal-purple mb-4">{"// Backend Technologies"}</h3>
+                {skills.backend.map((skill, index) => (
+                  <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
+                ))}
+              </div>
+            </TerminalWindow>
+          </article>
 
-          <TerminalWindow title="frontend.skills">
-            <div className="space-y-4">
-              <div className="text-terminal-purple mb-4">{"// Frontend Frameworks"}</div>
-              {skills.frontend.map((skill, index) => (
-                <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
-              ))}
-            </div>
-          </TerminalWindow>
+          <article aria-labelledby="frontend-skills">
+            <TerminalWindow title="frontend.skills">
+              <div className="space-y-4" role="list">
+                <h3 id="frontend-skills" className="text-terminal-purple mb-4">{"// Frontend Frameworks"}</h3>
+                {skills.frontend.map((skill, index) => (
+                  <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
+                ))}
+              </div>
+            </TerminalWindow>
+          </article>
 
-          <TerminalWindow title="additional.skills">
-            <div className="space-y-4">
-              <div className="text-terminal-purple mb-4">{"// Other Skills"}</div>
-              {skills.other.map((skill, index) => (
-                <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
-              ))}
-            </div>
-          </TerminalWindow>
+          <article aria-labelledby="other-skills">
+            <TerminalWindow title="additional.skills">
+              <div className="space-y-4" role="list">
+                <h3 id="other-skills" className="text-terminal-purple mb-4">{"// Other Skills"}</h3>
+                {skills.other.map((skill, index) => (
+                  <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
+                ))}
+              </div>
+            </TerminalWindow>
+          </article>
         </div>
       </div>
     </section>

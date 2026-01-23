@@ -30,9 +30,10 @@ const stats = [
 
 const StatsSection = () => {
   return (
-    <section className="py-20 px-4 bg-card/50">
+    <section className="py-20 px-4 bg-card/50" aria-labelledby="stats-heading">
+      <h2 id="stats-heading" className="sr-only">Professional Statistics</h2>
       <div className="container max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <dl className="grid grid-cols-2 md:grid-cols-4 gap-6" role="list" aria-label="Professional achievements">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -41,15 +42,20 @@ const StatsSection = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="text-center p-6 rounded-lg bg-secondary/30 border border-border hover:border-primary/50 transition-all group"
+              role="listitem"
             >
-              <stat.icon className={`w-10 h-10 mx-auto mb-4 ${stat.color} group-hover:scale-110 transition-transform`} />
-              <div className={`text-4xl md:text-5xl font-bold font-mono ${stat.color} mb-2`}>
+              <stat.icon 
+                className={`w-10 h-10 mx-auto mb-4 ${stat.color} group-hover:scale-110 transition-transform`} 
+                aria-hidden="true" 
+              />
+              <dt className="sr-only">{stat.label}</dt>
+              <dd className={`text-4xl md:text-5xl font-bold font-mono ${stat.color} mb-2`}>
                 {stat.value}
-              </div>
-              <div className="text-muted-foreground text-sm">{stat.label}</div>
+              </dd>
+              <div className="text-muted-foreground text-sm" aria-hidden="true">{stat.label}</div>
             </motion.div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );

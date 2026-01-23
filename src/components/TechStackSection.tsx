@@ -21,23 +21,23 @@ const technologies = [
 
 const TechStackSection = () => {
   return (
-    <section id="tech-stack" className="py-20 px-4">
+    <section id="tech-stack" className="py-20 px-4" aria-labelledby="tech-stack-heading">
       <div className="container max-w-6xl mx-auto">
-        <motion.div
+        <motion.header
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-mono mb-4">
-            <span className="text-primary">$</span> ls ./tech-stack/
+          <h2 id="tech-stack-heading" className="text-3xl md:text-4xl font-bold font-mono mb-4">
+            <span className="text-primary" aria-hidden="true">$</span> ls ./tech-stack/
           </h2>
           <p className="text-muted-foreground">Technologies I work with daily</p>
-        </motion.div>
+        </motion.header>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 list-none" role="list" aria-label="Technology stack">
           {technologies.map((tech, index) => (
-            <motion.div
+            <motion.li
               key={tech.name}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -50,9 +50,9 @@ const TechStackSection = () => {
                 {tech.name}
               </div>
               <div className="text-xs text-muted-foreground mt-1">{tech.category}</div>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
