@@ -2,49 +2,114 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
+import { features } from "process";
 
 const projects = [
   {
-    title: "ERP (Procurement & Accounts Module)",
-    description: "Procurements & Accounts module for Garments industries. Streamlines procurement process, manages accounts payable, and provides real-time view of financial health.",
+    title: "Supply Chain Management System",
+    description: "Supply Chain Management System for any kind of industries. Streamlines supply chain processes, manages supply chain records, and provides real-time view of supply chain data.",
     tech: ["Laravel", "MySQL", "PHP"],
-    type: "ERP",
+    type: "Supply Chain System",
+    
+  },
+  {
+    title: "Finance & Accounting System",
+    description: "Finance & Accounting System for any kind of industries. Streamlines finance & accounting processes, manages finance & accounting records, and provides real-time view of finance & accounting data.",
+    tech: ["Laravel", "MySQL", "PHP"],
+    type: "Finance & Accounting System",
+    features: ["COA", "Trial Balance", "Balance Sheet", "Income Statement", "Cash Flow Statement"]
+  },
+  {
+    title: "Inventory Management System",
+    description: "Inventory Management System for any kind of industries. Streamlines inventory processes, manages inventory records, and provides real-time view of inventory data.",
+    tech: ["Laravel", "MySQL", "PHP"],
+    type: "Inventory System",
+    features: ["Inventory", "Stock", "Stock Transfer", "Stock Adjustment", "Stock Report"]
+  },
+  {
+    title: "Assets Management System",
+    description: "Assets Management System for any kind of industries. Streamlines assets processes, manages assets records, and provides real-time view of assets data.",
+    tech: ["Laravel", "MySQL", "PHP"],
+    type: "Assets System",
+    features: ["Assets", "Stock", "Stock Transfer", "Stock Adjustment", "Stock Report"]
+  },
+  {
+    title: "Sales & Marketing System",
+    description: "Sales & Marketing System for Garments industries. Streamlines sales processes, manages sales records, and provides real-time view of sales data.",
+    tech: ["Laravel", "MySQL", "PHP"],
+    type: "Sales & Marketing System",
+
+  },
+  {
+    title: "Production Management System",
+    description: "Production Management System for Garments industries. Streamlines production processes, manages production records, and provides real-time view of production data.",
+    tech: ["Laravel", "MySQL", "PHP"],
+    type: "Production System",
+    features: ["Production", "Stock", "Stock Transfer", "Stock Adjustment", "Stock Report"]
   },
   {
     title: "Project Management (PMD)",
     description: "Comprehensive Project Management solution with risk management, planning, grant charts, project reports, and many more features.",
     tech: ["Laravel", "JavaScript", "MySQL"],
     type: "Management",
+    features: ["Project", "Risk Management", "Planning", "Grant Chart", "Project Report"]
   },
+  {
+    title: "Human Resource Management System",
+    description: "Human Resource Management System for Garments industries. Streamlines HR processes, manages employee records, and provides real-time view of HR data.",
+    tech: ["Laravel", "MySQL", "PHP"],
+    type: "HR System",
+  },
+  {
+    title: "CRM System",
+    description: "Customer Relationship Management System for Garments industries. Streamlines CRM processes, manages customer records, and provides real-time view of CRM data.",
+    tech: ["Laravel", "MySQL", "PHP"],
+    type: "CRM System",
+    features: ["CRM", "Customer", "CRM Report","Lead","Booking","Followup","Quotation","Order","Invoice","Payment","Refund","Customer Feedback"]
+  },
+
   {
     title: "HR & Recruitment",
     description: "Job & Requirement application for UK-based company. System admin can post jobs, manage recruitment procedures, and candidates can apply and take online exams virtually.",
     tech: ["Laravel", "React", "MySQL"],
     type: "HR System",
+    features: ["Job", "Recruitment", "Exam", "Cheeting Prevention", "Job Report"]
   },
+  {
+    title: "Traning Management System",
+    description: "Traning Management System for any kind of industries. Streamlines traning processes, manages traning records, and provides real-time view of traning data. and take exam virtually. cheeting prevention system included.",
+    tech: ["Laravel", "MySQL", "PHP"],
+    type: "Traning System",
+    features: ["Traning", "Exam", "Cheeting Prevention", "Traning Report"]
+  },
+
   {
     title: "Loan Management Software",
     description: "Complete loan management with Branch Area, Product Management, Collection Officer Management, member registration, loan processing, disbursement, recovery, and financial accounting.",
     tech: ["Laravel", "PHP", "MySQL"],
     type: "Finance",
+    features: ["Loan", "Member", "Disbursement", "Recovery", "Financial Accounting"]
   },
   {
     title: "Multi-Vendor E-Commerce",
     description: "Full-featured multi-vendor e-commerce platform like Daraz/Amazon. Includes payment gateway integration, courier API, and complete vendor management.",
     tech: ["Laravel", "JavaScript", "MySQL", "Payment Gateway"],
     type: "E-Commerce",
+    features: ["Multi-Vendor", "E-Commerce", "Payment Gateway", "Courier API", "Vendor Management"]
   },
   {
     title: "Online Learning Platform",
     description: "E-learning platform with course management, student enrollment, progress tracking, and online assessments.",
     tech: ["Laravel", "React", "MySQL"],
     type: "Education",
+    features: ["Course", "Student", "Enrollment", "Progress Tracking", "Online Assessments"]
   },
   {
     title: "School Management System",
     description: "Comprehensive school management system for student records, attendance, grading, and parent communication.",
     tech: ["Laravel", "PHP", "MySQL"],
     type: "Education",
+    features: ["Student", "Attendance", "Grading", "Parent Communication"]
   },
   {
     title: "Sequences (Bulk Mail Sender)",
@@ -53,15 +118,16 @@ const projects = [
     type: "SaaS",
   },
   {
-    title: "SSG Agro",
-    description: "Agricultural management system for Super Star Group's agro division.",
-    tech: ["Laravel", "MySQL"],
-    type: "Agriculture",
+    title: "POS System",
+    description: "POS System for any kind of industries. Streamlines POS processes, manages POS records, and provides real-time view of POS data.",
+    tech: ["Laravel", "MySQL", "PHP", "JavaScript"],
+    type: "POS System",
+    features: ["POS", "Stock", "Stock Transfer", "Stock Adjustment", "Stock Report"]
   },
   {
     title: "SSG Global",
     description: "Global operations management platform for Super Star Group.",
-    tech: ["Laravel", "MySQL"],
+    tech: ["Laravel", "MySQL","React"],
     type: "Enterprise",
   },
   {
@@ -127,6 +193,17 @@ const ProjectsSection = () => {
                     className="px-2 py-1 text-xs font-mono text-terminal-green bg-secondary/50 rounded border border-primary/20"
                   >
                     {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project.features?.map((feature) => (
+                  <span
+                    key={feature}
+                    className="px-2 py-1 text-xs font-mono text-terminal-green bg-secondary/50 rounded border border-primary/20"
+                  >
+                    {feature}
                   </span>
                 ))}
               </div>

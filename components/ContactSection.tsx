@@ -33,32 +33,44 @@ const ContactSection = () => {
           <p className="text-muted-foreground">Let's build something amazing together</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-1 gap-8">
           <TerminalWindow title="contact_info.json">
             <div className="space-y-6">
               <div className="text-terminal-purple mb-4">{"// Get in touch"}</div>
 
               <div className="space-y-4">
-                <a
-                  href="mailto:me@farookhridoy.com"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
-                >
-                  <Mail className="w-5 h-5 text-terminal-cyan group-hover:text-primary" />
-                  <span>me@farookhridoy.com</span>
-                </a>
+                <div className="space-y-2">
+                  <p className="text-muted-foreground">
+                    <span className="text-terminal-green">if</span> (want_to_hire_me) {"{"}
+                  </p>
+                  <p className="text-muted-foreground pl-4">
+                    please_dm_me_on_linkedin();
+                  </p>
+                  <p className="text-muted-foreground">{"}"}</p>
 
-                <a
+                  <a
+                    href="https://linkedin.com/in/farookhridoy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group mt-4"
+                  >
+                    <Linkedin className="w-5 h-5 text-terminal-cyan group-hover:text-primary" />
+                    <span>linkedin.com/in/farookhridoy</span>
+                  </a>
+                </div>
+
+                {/* <a
                   href="tel:+8801822521 98"
                   className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
                 >
                   <Phone className="w-5 h-5 text-terminal-green group-hover:text-primary" />
                   <span>+88 0182252198</span>
-                </a>
+                </a> */}
 
-                <div className="flex items-center gap-3 text-muted-foreground">
+                {/* <div className="flex items-center gap-3 text-muted-foreground">
                   <MapPin className="w-5 h-5 text-terminal-yellow" />
                   <span>H#91 R#9/1 South Bansree B #E Dhaka, Bangladesh</span>
-                </div>
+                </div> */}
               </div>
 
               <div className="pt-6 border-t border-border">
@@ -109,7 +121,7 @@ const ContactSection = () => {
             </div>
           </TerminalWindow>
 
-          <TerminalWindow title="new_message.sh">
+          {/* <TerminalWindow title="new_message.sh">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="text-terminal-cyan text-sm mb-2 block">
@@ -158,7 +170,7 @@ const ContactSection = () => {
                 ./submit.sh
               </button>
             </form>
-          </TerminalWindow>
+          </TerminalWindow> */}
         </div>
       </div>
     </section>

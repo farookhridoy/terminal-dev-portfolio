@@ -9,6 +9,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import EducationSection from "@/components/EducationSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import GithubStatsSection from "@/components/GithubStatsSection";
+import LinkedInSection from "@/components/LinkedInSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/seo/StructuredData";
@@ -28,6 +29,7 @@ export default function Home() {
                     <EducationSection />
                     <ProjectsSection />
                     <GithubStatsSection />
+                    <LinkedInSection />
                     <ContactSection />
                 </main>
                 <Footer />

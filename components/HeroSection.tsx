@@ -16,8 +16,10 @@ const HeroSection = () => {
   }, []);
 
   const [particles, setParticles] = useState<{ initialX: number; initialY: number; yAnimate: (number | null)[]; duration: number }[]>([]);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const width = window.innerWidth;
     const height = window.innerHeight;
 
@@ -35,27 +37,29 @@ const HeroSection = () => {
       <div className="absolute inset-0 scanlines opacity-50" />
 
       {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full"
-            initial={{
-              x: particle.initialX,
-              y: particle.initialY,
-            }}
-            animate={{
-              y: particle.yAnimate,
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
+      {mounted && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {particles.map((particle, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-primary/30 rounded-full"
+              initial={{
+                x: particle.initialX,
+                y: particle.initialY,
+              }}
+              animate={{
+                y: particle.yAnimate,
+                opacity: [0.2, 0.8, 0.2],
+              }}
+              transition={{
+                duration: particle.duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="container max-w-4xl mx-auto relative z-10">
         <TerminalWindow title="~/portfolio/about.sh">

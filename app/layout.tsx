@@ -33,6 +33,13 @@ export const metadata: Metadata = {
     ],
     authors: [{ name: "MD. Omar Farook Hridoy", url: "https://farookhridoy.com" }],
     creator: "MD. Omar Farook Hridoy",
+    icons: {
+        icon: [
+            { url: "/favicon.png", type: "image/png" },
+            { url: "/favicon.ico", sizes: "any" },
+        ],
+        apple: "/favicon.png",
+    },
     openGraph: {
         type: "website",
         locale: "en_US",
