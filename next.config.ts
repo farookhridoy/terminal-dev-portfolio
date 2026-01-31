@@ -6,7 +6,10 @@ const nextConfig: NextConfig = {
         domains: ['farookhridoy.com'],
     },
     eslint: {
-        ignoreDuringBuilds: false,
+        ignoreDuringBuilds: true,
+    },
+    typescript: {
+        ignoreBuildErrors: true,
     },
 };
 

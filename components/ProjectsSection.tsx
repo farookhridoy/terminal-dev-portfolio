@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
-import { features } from "process";
 
 const projects = [
   {

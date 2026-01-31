@@ -19,16 +19,23 @@ const HeroSection = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Only run on client side after mount
     setMounted(true);
-    const width = window.innerWidth;
-    const height = window.innerHeight;
 
-    setParticles([...Array(20)].map(() => ({
-      initialX: Math.random() * width,
-      initialY: Math.random() * height,
-      yAnimate: [null, Math.random() * -100, Math.random() * 100],
-      duration: 3 + Math.random() * 2,
-    })));
+    // Use a small delay to ensure hydration is complete
+    const timer = setTimeout(() => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      setParticles([...Array(20)].map(() => ({
+        initialX: Math.random() * width,
+        initialY: Math.random() * height,
+        yAnimate: [null, Math.random() * -100, Math.random() * 100],
+        duration: 3 + Math.random() * 2,
+      })));
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
