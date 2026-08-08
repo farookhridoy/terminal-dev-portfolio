@@ -8,8 +8,7 @@ const skills = {
     { name: "PHP", level: 95 },
     { name: "Laravel", level: 95 },
     { name: "Node.js", level: 85 },
-    { name: "Express", level: 85 },
-    { name: "NestJS", level: 85 },
+    { name: "Rest API", level: 100 },
     { name: "Python", level: 85 },
     { name: "FastAPI", level: 85 },
     { name: "Bash", level: 85 },
@@ -52,16 +51,6 @@ const skills = {
     { name: "Linux", level: 90 },
     { name: "gitHub Actions", level: 85 },
 
-  ],
-  bigdata: [
-    { name: "Hadoop", level: 85 },
-    { name: "Spark", level: 85 },
-    { name: "Hive", level: 85 },
-    { name: "HBase", level: 85 },
-    { name: "Kafka", level: 85 },
-    { name: "Zookeeper", level: 85 },
-    { name: "Flume", level: 85 },
-    { name: "Sqoop", level: 85 },
   ],
   tools: [
     { name: "Git", level: 90 },
@@ -196,14 +185,14 @@ const SkillsSection = () => {
             </div>
           </TerminalWindow>
 
-          <TerminalWindow title="bigdata.skills">
+          {/* <TerminalWindow title="bigdata.skills">
             <div className="space-y-4">
               <div className="text-terminal-purple mb-4">{"// Big Data Technologies"}</div>
               {skills.bigdata.map((skill, index) => (
                 <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
               ))}
             </div>
-          </TerminalWindow>
+          </TerminalWindow> */}
 
           <TerminalWindow title="methodologies.skills">
             <div className="space-y-4">

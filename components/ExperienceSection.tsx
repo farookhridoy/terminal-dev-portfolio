@@ -8,14 +8,14 @@ const experiences = [
     title: "Sr. Software Engineer",
     company: "Super Star Group (SSG)",
     period: "Dec 2021 - Present",
-    description: "Leading enterprise software development with focus on ERP systems, requirement gathering, and stakeholder collaboration.",
-    highlights: ["ERP Development", "Team Leadership", "System Architecture", "UAT Management"],
+    description: "Technical Lead and ERP consultant delivering multi-module enterprise systems — SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management, and Finance/Fintech (SSLCommerz-integrated) — across enterprise groups including RM Group, MBM Group, and Tru Fabric.",
+    highlights: ["ERP Consulting", "Technical Leadership", "Fintech", "DevOps", "Team Leadership"],
     activities: [
-      "Requirement gathering from stakeholders",
-      "Analysis of data & implementation planning",
-      "Database design and form development",
-      "Participate in UAT to evaluate developments",
-      "Deploy latest developments to server"
+      "Lead technical architecture and delivery across ERP modules: SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management, and Finance",
+      "Serve as ERP consultant and technical lead for multiple enterprise groups, including RM Group, MBM Group, and Tru Fabric",
+      "Diagnose and rewrite slow SQL queries on tables carrying large daily transaction volumes to keep reporting and dashboards responsive",
+      "Built GitHub Actions pipelines automating testing and deployment; manage AWS server infrastructure end-to-end (DevOps)",
+      "Mentor and lead a development team, owning requirement gathering and UAT across all modules"
     ]
   },
   {

@@ -5,6 +5,13 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
+    title: "Multi-Module Enterprise ERP Platform",
+    description: "Technical lead and consultant on a multi-module ERP spanning SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management, and Finance/Fintech (SSLCommerz-integrated) — deployed across enterprise groups including Software Shop Ltd (SSLCommerz, SSL, CGL, OIL, OTL) RM Group, MBM Group, and Tru Fabric. Rebuilt slow-running SQL queries to cut reporting latency and automated deployments with GitHub Actions on AWS.",
+    tech: ["Laravel", "PHP", "MySQL", "React", "Next.js", "AWS", "GitHub Actions"],
+    type: "ERP Platform",
+    features: ["SCM", "Import/Export", "Inventory", "Production", "HR & Payroll", "Document Management", "Fintech", "Query Optimization", "CI/CD (GitHub Actions)"]
+  },
+  {
     title: "Supply Chain Management System",
     description: "Supply Chain Management System for any kind of industries. Streamlines supply chain processes, manages supply chain records, and provides real-time view of supply chain data.",
     tech: ["Laravel", "MySQL", "PHP"],

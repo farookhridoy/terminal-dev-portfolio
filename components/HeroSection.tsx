@@ -101,11 +101,11 @@ const HeroSection = () => {
                     </p>
                     <p>
                       <span className="text-terminal-purple">title:</span>{" "}
-                      <span className="text-terminal-yellow">"Software Engineer"</span>
+                      <span className="text-terminal-yellow">"ERP Technical Lead & Fintech Software Engineer"</span>
                     </p>
                     <p>
                       <span className="text-terminal-purple">experience:</span>{" "}
-                      <span className="text-terminal-orange">6+</span>{" "}
+                      <span className="text-terminal-orange">8+</span>{" "}
                       <span className="text-muted-foreground">// years of crafting digital solutions</span>
                     </p>
                     <p>
@@ -123,7 +123,7 @@ const HeroSection = () => {
                     </p>
                     <p>
                       <span className="text-terminal-purple">specialization:</span>{" "}
-                      <span className="text-terminal-yellow">"Laravel & ERP Development"</span>
+                      <span className="text-terminal-yellow">"ERP Consulting, Technical Leadership & DevOps"</span>
                     </p>
                   </div>
 
@@ -150,9 +150,10 @@ const HeroSection = () => {
                     <span className="text-primary">One Line at a Time</span>
                   </h1>
                   <p className="text-muted-foreground max-w-xl">
-                    Laravel Developer with a proven track record across e-commerce, content management,
-                    and enterprise solutions (ERP). Delivering exceptional results through innovative
-                    web applications and team collaboration.
+                    Technical Lead and ERP consultant delivering multi-module enterprise systems — SCM,
+                    Import/Export, Inventory, Production, HR & Payroll, Document Management, and
+                    Finance/Fintech — across enterprise groups including Software Shop Ltd (SSL Commerze, SSL, CGL, OIL, OTL) RM Group,
+                    MBM Group, and Tru Fabric, backed by hands-on DevOps and query-level engineering.
                   </p>
                 </motion.div>
 
