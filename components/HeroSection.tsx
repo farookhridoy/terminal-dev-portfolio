@@ -118,8 +118,8 @@ const HeroSection = () => {
                       <span className="text-terminal-yellow">"Dhaka, Bangladesh"</span>
                     </p>
                     <p>
-                      <span className="text-terminal-purple">email:</span>{" "}
-                      <span className="text-terminal-cyan">"farookhridoy@gmail.com"</span>
+                      <span className="text-terminal-purple">reach_me:</span>{" "}
+                      <span className="text-terminal-cyan">"linkedin.com/in/farookhridoy"</span>
                     </p>
                     <p>
                       <span className="text-terminal-purple">specialization:</span>{" "}
