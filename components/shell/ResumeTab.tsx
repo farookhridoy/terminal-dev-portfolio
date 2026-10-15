@@ -1,6 +1,9 @@
-import { Briefcase, GraduationCap, Wrench } from "lucide-react";
+import { Briefcase, GraduationCap, Languages, MapPin, User, Wrench } from "lucide-react";
 import Chip from "./Chip";
-import { education, experiences, profile, skills } from "@/lib/content";
+import Rich from "./Rich";
+import Reveal from "./Reveal";
+import LocalClock from "./LocalClock";
+import { about, education, experiences, profile, skills } from "@/lib/content";
 
 const skillGroups: { key: keyof typeof skills; label: string }[] = [
   { key: "backend", label: "Backend" },
@@ -36,28 +39,64 @@ const groups = skillGroups
 export default function ResumeTab() {
   return (
     <div className="space-y-12">
-      <section aria-label="Summary" className="rounded-2xl border border-border bg-card p-5 sm:p-6">
-        <p className="leading-relaxed text-muted-foreground">{profile.summary}</p>
-        <p className="mt-3 text-sm">
-          <span className="font-medium">Specialization:</span> <span className="text-muted-foreground">{profile.specialization}</span>
-        </p>
-      </section>
+      <Reveal as="section" className="space-y-4">
+        <Heading icon={User}>About</Heading>
+        {about.map((para) => (
+          <p key={para} className="leading-relaxed text-muted-foreground">
+            <Rich text={para} />
+          </p>
+        ))}
+
+        <div className="grid gap-3 pt-2 sm:grid-cols-2">
+          <div className="rounded-2xl border border-primary/30 bg-accent p-4">
+            <p className="flex items-center gap-1.5 text-xs font-medium text-accent-foreground">
+              <MapPin className="h-3.5 w-3.5" /> Based in
+            </p>
+            <p className="mt-1 font-semibold">{profile.location}</p>
+            <LocalClock timeZone={profile.timeZone} />
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-4">
+            <p className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+              <Languages className="h-3.5 w-3.5" /> Languages
+            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {skills.languages.map((l) => (
+                <Chip key={l.name}>{l.name}</Chip>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Reveal>
 
       <section aria-label="Experience">
         <Heading icon={Briefcase}>Experience</Heading>
         <ol className="relative space-y-8 border-l border-border pl-6">
           {experiences.map((exp) => (
-            <li key={`${exp.company}-${exp.period}`} className="relative">
+            <Reveal as="li" key={`${exp.company}-${exp.period}`} className="relative">
               <span className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-primary bg-background" aria-hidden="true" />
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 className="text-lg font-semibold">{exp.title}</h3>
-                <span className="font-mono text-xs text-muted-foreground">{exp.period}</span>
+              <div className="flex items-start gap-3">
+                <span
+                  aria-hidden="true"
+                  className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent text-xs font-bold text-accent-foreground"
+                >
+                  {exp.mark}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                    <h3 className="text-lg font-semibold leading-snug">{exp.title}</h3>
+                    <span className="font-mono text-xs text-muted-foreground">{exp.period}</span>
+                  </div>
+                  <p className="text-sm font-medium text-primary">{exp.company}</p>
+                </div>
               </div>
-              <p className="text-sm font-medium text-primary">{exp.company}</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{exp.description}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                <Rich text={exp.description} />
+              </p>
               <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground marker:text-primary/60">
                 {exp.activities.map((a) => (
-                  <li key={a}>{a}</li>
+                  <li key={a}>
+                    <Rich text={a} />
+                  </li>
                 ))}
               </ul>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -67,12 +106,12 @@ export default function ResumeTab() {
                   </Chip>
                 ))}
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </section>
 
-      <section aria-label="Education">
+      <Reveal as="section">
         <Heading icon={GraduationCap}>Education</Heading>
         <ul className="grid gap-3 sm:grid-cols-2">
           {education.map((e) => (
@@ -84,9 +123,9 @@ export default function ResumeTab() {
             </li>
           ))}
         </ul>
-      </section>
+      </Reveal>
 
-      <section aria-label="Skills">
+      <Reveal as="section">
         <Heading icon={Wrench}>Skills and tools</Heading>
         <div className="space-y-5">
           {groups.map(({ label, items }) => (
@@ -100,7 +139,7 @@ export default function ResumeTab() {
             </div>
           ))}
         </div>
-      </section>
+      </Reveal>
     </div>
   );
 }

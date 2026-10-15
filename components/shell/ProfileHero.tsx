@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { MapPin, Briefcase, Share2, Check } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Chip from "./Chip";
+import CountUp from "./CountUp";
 import { profile, stats, technologies } from "@/lib/content";
 
 function useLocalTime(timeZone: string) {
@@ -40,7 +42,12 @@ export default function ProfileHero() {
     <section id="profile" className="scroll-mt-20">
       <div className="banner-grid h-28 w-full sm:h-36" aria-hidden="true" />
 
-      <div className="px-5 pb-6 sm:px-8">
+      <motion.div
+        className="px-5 pb-6 sm:px-8"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="-mt-12 flex flex-col gap-4 sm:-mt-14 sm:flex-row sm:items-end">
           <Avatar className="h-24 w-24 shrink-0 border-4 border-background shadow-sm sm:h-28 sm:w-28">
             <AvatarImage src={profile.avatar} alt={profile.name} />
@@ -72,7 +79,17 @@ export default function ProfileHero() {
 
         <p className="mt-4 text-[15px] italic text-muted-foreground">{profile.tagline}</p>
 
-        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-muted-foreground">
+        <a
+          href={profile.founderOf.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground transition-colors hover:border-primary"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+          Founder of {profile.founderOf.name}
+        </a>
+
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-muted-foreground">
           <span className="inline-flex items-start gap-1.5">
             <Briefcase className="mt-0.5 h-4 w-4 shrink-0" />
             <span>
@@ -95,12 +112,12 @@ export default function ProfileHero() {
         <dl className="mt-5 grid grid-cols-2 divide-border overflow-hidden rounded-2xl border border-border bg-card sm:grid-cols-4 sm:divide-x">
           {stats.map((s, i) => (
             <div key={s.label} className={`px-4 py-3 ${i % 2 === 1 ? "border-l border-border sm:border-l-0" : ""} ${i > 1 ? "border-t border-border sm:border-t-0" : ""}`}>
-              <dd className="text-xl font-bold text-primary">{s.value}</dd>
+              <dd className="text-xl font-bold text-primary"><CountUp value={s.value} /></dd>
               <dt className="text-xs text-muted-foreground">{s.label}</dt>
             </div>
           ))}
         </dl>
-      </div>
+      </motion.div>
     </section>
   );
 }

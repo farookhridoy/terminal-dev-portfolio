@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import Sidebar, { type SectionId } from "@/components/shell/Sidebar";
 import MobileBar from "@/components/shell/MobileBar";
 import ProfileHero from "@/components/shell/ProfileHero";
@@ -8,6 +9,7 @@ import ResumeTab from "@/components/shell/ResumeTab";
 import WorkTab from "@/components/shell/WorkTab";
 import PostsTab from "@/components/shell/PostsTab";
 import RightRail from "@/components/shell/RightRail";
+import ContactBand from "@/components/shell/ContactBand";
 import StructuredData from "@/components/seo/StructuredData";
 
 type Tab = "resume" | "work" | "posts";
@@ -70,7 +72,7 @@ export default function Home() {
     }
 
     return (
-        <>
+        <MotionConfig reducedMotion="user">
             <StructuredData />
             <a
                 href="#tabs"
@@ -110,17 +112,26 @@ export default function Home() {
                             ))}
                         </div>
 
-                        <div
-                            role="tabpanel"
-                            id={`panel-${tab}`}
-                            aria-labelledby={`tab-${tab}`}
-                            className="mx-auto max-w-3xl px-5 py-10 sm:px-8"
-                        >
-                            {tab === "resume" && <ResumeTab />}
-                            {tab === "work" && <WorkTab />}
-                            {tab === "posts" && <PostsTab />}
-                        </div>
+                        <AnimatePresence mode="wait" initial={false}>
+                            <motion.div
+                                key={tab}
+                                role="tabpanel"
+                                id={`panel-${tab}`}
+                                aria-labelledby={`tab-${tab}`}
+                                className="mx-auto max-w-3xl px-5 py-10 sm:px-8"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -6 }}
+                                transition={{ duration: 0.18 }}
+                            >
+                                {tab === "resume" && <ResumeTab />}
+                                {tab === "work" && <WorkTab />}
+                                {tab === "posts" && <PostsTab />}
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
+
+                    <ContactBand />
                 </main>
 
                 {/* One rail: beside the content on wide screens, under it everywhere else. */}
@@ -130,6 +141,6 @@ export default function Home() {
                     </div>
                 </aside>
             </div>
-        </>
+        </MotionConfig>
     );
 }

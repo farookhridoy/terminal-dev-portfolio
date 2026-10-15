@@ -1,63 +1,60 @@
 // All portfolio content lives here so it can be edited without touching the layout.
 // Moved unchanged from the previous section components.
 
+// **double asterisks** mark text to emphasise; see components/shell/Rich.tsx.
 export const experiences = [
   {
     title: "Sr. Software Engineer",
     company: "Super Star Group (SSG)",
-    period: "Dec 2021 - Present",
-    description: "Technical Lead and ERP consultant delivering multi-module enterprise systems — SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management, and Finance/Fintech (SSLCommerz-integrated) — across enterprise groups including RM Group, MBM Group, and Tru Fabric.",
-    highlights: ["ERP Consulting", "Technical Leadership", "Fintech", "DevOps", "Team Leadership"],
+    period: "Dec 2021 – Present",
+    mark: "SSG",
+    description: "Technical lead and ERP consultant for **multi-module enterprise systems**: SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management and Finance/Fintech (SSLCommerz-integrated). Delivered across **RM Group, MBM Group and Tru Fabric**.",
     activities: [
-      "Lead technical architecture and delivery across ERP modules: SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management, and Finance",
-      "Serve as ERP consultant and technical lead for multiple enterprise groups, including RM Group, MBM Group, and Tru Fabric",
-      "Diagnose and rewrite slow SQL queries on tables carrying large daily transaction volumes to keep reporting and dashboards responsive",
-      "Built GitHub Actions pipelines automating testing and deployment; manage AWS server infrastructure end-to-end (DevOps)",
-      "Mentor and lead a development team, owning requirement gathering and UAT across all modules"
-    ]
+      "**Architecture and delivery:** own the technical design and release of every ERP module, from requirements gathering to UAT.",
+      "**Query performance:** diagnose and rewrite slow SQL on tables with large daily transaction volumes, so reports and dashboards stay responsive.",
+      "**DevOps:** GitHub Actions pipelines for testing and deployment, and end-to-end management of the AWS servers.",
+      "**Team:** mentor and lead the development team.",
+    ],
+    highlights: ["ERP Consulting", "Technical Leadership", "Fintech", "DevOps", "Team Leadership"],
   },
   {
     title: "Sr. Web Application Developer",
     company: "Monoputo",
-    period: "Jan 2020 - Aug 2021",
-    description: "Project management and team leadership for multi-vendor Laravel applications with performance optimization.",
-    highlights: ["Project Management", "Laravel", "Team Lead", "Cloud Management"],
+    period: "Jan 2020 – Aug 2021",
+    mark: "M",
+    description: "Project manager and team lead for **multi-vendor Laravel applications**, with a focus on performance.",
     activities: [
-      "Project Manager and lead the team",
-      "Design and develop multi-vendor Laravel applications",
-      "Developed and implemented performance improvement strategies",
-      "Created plans and communicated deadlines",
-      "Server management (Clouds & Share Hosting)"
-    ]
+      "Designed and built multi-vendor Laravel applications and led the team.",
+      "Planned work, communicated deadlines and rolled out performance improvements.",
+      "Managed servers on cloud and shared hosting.",
+    ],
+    highlights: ["Project Management", "Laravel", "Team Lead", "Cloud Management"],
   },
   {
     title: "Web Application Developer",
     company: "EASCA Solutions Limited",
-    period: "Apr 2019 - Dec 2019",
-    description: "Developed comprehensive management systems for various industries including garments and government sectors.",
-    highlights: ["Inventory Management", "Government Projects", "Plugin Development"],
+    period: "Apr 2019 – Dec 2019",
+    mark: "E",
+    description: "Management systems for **garments and government** clients.",
     activities: [
-      "Developed Producer and Dealership, Patient, and inventory management software",
-      "Managing different common modules for Garments Inventory",
-      "Worked on Minerals & Archive Software for Ministry of Power Energy & Mineral Resource",
-      "Designed, implemented, and monitored web pages and plugins",
-      "Applied emerging technologies to update site applicability"
-    ]
+      "Built producer and dealership, patient and inventory management software.",
+      "Worked on the **Minerals & Archive software** for the Ministry of Power, Energy & Mineral Resources.",
+      "Maintained the common modules of the garments inventory system and built web pages and plugins.",
+    ],
+    highlights: ["Inventory Management", "Government Projects", "Plugin Development"],
   },
   {
     title: "Jr. Web Application Developer",
     company: "ZINISMART Limited",
-    period: "Apr 2018 - Mar 2019",
-    description: "E-commerce development with focus on multi-merchant platforms and third-party integrations.",
-    highlights: ["E-Commerce", "API Integration", "Payment Gateway", "Inventory Management"],
+    period: "Apr 2018 – Mar 2019",
+    mark: "Z",
+    description: "**Multi-merchant e-commerce** development with third-party integrations.",
     activities: [
-      "Developed multi-merchant e-commerce website",
-      "Developed Attribute set module for specific product details",
-      "Managing inventory management system software",
-      "Built responsive layouts for different platforms",
-      "Integration Courier API (e-Courier) & SMS gateway (Robi)",
-      "Payment gateway integration"
-    ]
+      "Built the multi-merchant e-commerce site, an attribute-set module for product details and responsive layouts.",
+      "Integrated the e-Courier API, the Robi SMS gateway and payment gateways.",
+      "Maintained the inventory management software.",
+    ],
+    highlights: ["E-Commerce", "API Integration", "Payment Gateway", "Inventory Management"],
   },
 ];
 
@@ -81,142 +78,44 @@ export const education = [
 export const projects = [
   {
     title: "Multi-Module Enterprise ERP Platform",
-    description: "Technical lead and consultant on a multi-module ERP spanning SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management, and Finance/Fintech (SSLCommerz-integrated) — deployed across enterprise groups including Software Shop Ltd (SSLCommerz, SSL, CGL, OIL, OTL) RM Group, MBM Group, and Tru Fabric. Rebuilt slow-running SQL queries to cut reporting latency and automated deployments with GitHub Actions on AWS.",
+    line: "One ERP across SCM, import/export, inventory, production, HR & payroll, documents and finance, deployed for enterprise groups.",
+    description: "Technical lead and consultant on a multi-module ERP spanning SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management and Finance/Fintech (SSLCommerz-integrated). Deployed across enterprise groups including Software Shop Ltd (SSLCommerz, SSL, CGL, OIL, OTL), RM Group, MBM Group and Tru Fabric. Rebuilt slow-running SQL queries to cut reporting latency and automated deployments with GitHub Actions on AWS.",
     tech: ["Laravel", "PHP", "MySQL", "React", "Next.js", "AWS", "GitHub Actions"],
     type: "ERP Platform",
-    features: ["SCM", "Import/Export", "Inventory", "Production", "HR & Payroll", "Document Management", "Fintech", "Query Optimization", "CI/CD (GitHub Actions)"]
   },
-  {
-    title: "Supply Chain Management System",
-    description: "Supply Chain Management System for any kind of industries. Streamlines supply chain processes, manages supply chain records, and provides real-time view of supply chain data.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "Supply Chain System",
-    
-  },
-  {
-    title: "Finance & Accounting System",
-    description: "Finance & Accounting System for any kind of industries. Streamlines finance & accounting processes, manages finance & accounting records, and provides real-time view of finance & accounting data.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "Finance & Accounting System",
-    features: ["COA", "Trial Balance", "Balance Sheet", "Income Statement", "Cash Flow Statement"]
-  },
-  {
-    title: "Inventory Management System",
-    description: "Inventory Management System for any kind of industries. Streamlines inventory processes, manages inventory records, and provides real-time view of inventory data.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "Inventory System",
-    features: ["Inventory", "Stock", "Stock Transfer", "Stock Adjustment", "Stock Report"]
-  },
-  {
-    title: "Assets Management System",
-    description: "Assets Management System for any kind of industries. Streamlines assets processes, manages assets records, and provides real-time view of assets data.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "Assets System",
-    features: ["Assets", "Stock", "Stock Transfer", "Stock Adjustment", "Stock Report"]
-  },
-  {
-    title: "Sales & Marketing System",
-    description: "Sales & Marketing System for Garments industries. Streamlines sales processes, manages sales records, and provides real-time view of sales data.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "Sales & Marketing System",
+  { title: "Supply Chain Management System", line: "Supply chain records with a real-time view, for any industry.", tech: ["Laravel", "MySQL"], type: "Supply chain" },
+  { title: "Finance & Accounting System", line: "Chart of accounts, trial balance, balance sheet, income and cash flow statements.", tech: ["Laravel", "MySQL"], type: "Finance" },
+  { title: "Inventory Management System", line: "Stock, transfers, adjustments and stock reports.", tech: ["Laravel", "MySQL"], type: "Inventory" },
+  { title: "Assets Management System", line: "Asset records, transfers, adjustments and reports.", tech: ["Laravel", "MySQL"], type: "Assets" },
+  { title: "Sales & Marketing System", line: "Sales processes and live sales data for garments industries.", tech: ["Laravel", "MySQL"], type: "Sales" },
+  { title: "Production Management System", line: "Production, stock and stock transfers for garments industries.", tech: ["Laravel", "MySQL"], type: "Production" },
+  { title: "Project Management (PMD)", line: "Risk management, planning, Gantt charts and project reports.", tech: ["Laravel", "JavaScript", "MySQL"], type: "Management" },
+  { title: "Human Resource Management System", line: "Employee records and HR processes for garments industries.", tech: ["Laravel", "MySQL"], type: "HR" },
+  { title: "CRM System", line: "Leads, bookings, follow-ups, quotations, orders, invoices and payments.", tech: ["Laravel", "MySQL"], type: "CRM" },
+  { title: "HR & Recruitment", line: "Job postings, recruitment and online exams with cheating prevention, for a UK-based company.", tech: ["Laravel", "React", "MySQL"], type: "Recruitment" },
+  { title: "Training Management System", line: "Training programmes and online exams with cheating prevention.", tech: ["Laravel", "MySQL"], type: "Training" },
+  { title: "Loan Management Software", line: "Branches, members, loan processing, disbursement, recovery and accounting.", tech: ["Laravel", "PHP", "MySQL"], type: "Finance" },
+  { title: "Multi-Vendor E-Commerce", line: "A Daraz/Amazon-style marketplace with payment gateway, courier API and vendor management.", tech: ["Laravel", "JavaScript", "MySQL"], type: "E-commerce" },
+  { title: "Online Learning Platform", line: "Courses, enrolment, progress tracking and online assessments.", tech: ["Laravel", "React", "MySQL"], type: "Education" },
+  { title: "School Management System", line: "Student records, attendance, grading and parent communication.", tech: ["Laravel", "MySQL"], type: "Education" },
+  { title: "POS System", line: "Point of sale with stock, transfers and adjustments.", tech: ["Laravel", "MySQL", "JavaScript"], type: "Retail" },
+  { title: "SSG Global", line: "Global operations management platform for Super Star Group.", tech: ["Laravel", "MySQL", "React"], type: "Enterprise" },
+  { title: "BIZZ Career (Job Portal)", line: "Job portal with advanced search and application tracking.", tech: ["Laravel", "JavaScript", "MySQL"], type: "Job portal" },
+];
 
-  },
-  {
-    title: "Production Management System",
-    description: "Production Management System for Garments industries. Streamlines production processes, manages production records, and provides real-time view of production data.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "Production System",
-    features: ["Production", "Stock", "Stock Transfer", "Stock Adjustment", "Stock Report"]
-  },
-  {
-    title: "Project Management (PMD)",
-    description: "Comprehensive Project Management solution with risk management, planning, grant charts, project reports, and many more features.",
-    tech: ["Laravel", "JavaScript", "MySQL"],
-    type: "Management",
-    features: ["Project", "Risk Management", "Planning", "Gantt Chart", "Project Report"]
-  },
-  {
-    title: "Human Resource Management System",
-    description: "Human Resource Management System for Garments industries. Streamlines HR processes, manages employee records, and provides real-time view of HR data.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "HR System",
-  },
-  {
-    title: "CRM System",
-    description: "Customer Relationship Management System for Garments industries. Streamlines CRM processes, manages customer records, and provides real-time view of CRM data.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "CRM System",
-    features: ["CRM", "Customer", "CRM Report","Lead","Booking","Followup","Quotation","Order","Invoice","Payment","Refund","Customer Feedback"]
-  },
+// Products built under theLaraSoft. Screenshots are of the live sites.
+export const products = [
+  { name: "Dentora", line: "Dental clinic management software: appointments, patient records, dental charts, payments and invoices in one place.", tags: ["Healthcare", "SaaS"], image: "/images/products/dentora.jpg", href: "https://dentora.thelarasoft.com/" },
+  { name: "LaraMeet", line: "Premium video meetings, free for everyone.", tags: ["Video meetings", "Free"], image: "/images/products/larameet.jpg", href: "https://meet.thelarasoft.com/" },
+  { name: "Lara Sequence", line: "Bulk email sender for marketing campaigns and automated email sequences.", tags: ["Email", "SaaS"], image: "/images/products/lara-sequence.jpg", href: "https://sequence.thelarasoft.com/login" },
+  { name: "theLaraSoft", line: "A Dhaka-based digital agency and technology solutions company. Where I am founder.", tags: ["Agency", "Founder"], image: "/images/products/larasoft.jpg", href: "https://thelarasoft.com/" },
+] as const;
 
-  {
-    title: "HR & Recruitment",
-    description: "Job & Requirement application for UK-based company. System admin can post jobs, manage recruitment procedures, and candidates can apply and take online exams virtually.",
-    tech: ["Laravel", "React", "MySQL"],
-    type: "HR System",
-    features: ["Job", "Recruitment", "Exam", "Cheating Prevention", "Job Report"]
-  },
-  {
-    title: "Training Management System",
-    description: "Training Management System for any kind of industries. Streamlines training processes, manages training records, and provides real-time view of training data. and take exam virtually. cheating prevention system included.",
-    tech: ["Laravel", "MySQL", "PHP"],
-    type: "Training System",
-    features: ["Training", "Exam", "Cheating Prevention", "Training Report"]
-  },
-
-  {
-    title: "Loan Management Software",
-    description: "Complete loan management with Branch Area, Product Management, Collection Officer Management, member registration, loan processing, disbursement, recovery, and financial accounting.",
-    tech: ["Laravel", "PHP", "MySQL"],
-    type: "Finance",
-    features: ["Loan", "Member", "Disbursement", "Recovery", "Financial Accounting"]
-  },
-  {
-    title: "Multi-Vendor E-Commerce",
-    description: "Full-featured multi-vendor e-commerce platform like Daraz/Amazon. Includes payment gateway integration, courier API, and complete vendor management.",
-    tech: ["Laravel", "JavaScript", "MySQL", "Payment Gateway"],
-    type: "E-Commerce",
-    features: ["Multi-Vendor", "E-Commerce", "Payment Gateway", "Courier API", "Vendor Management"]
-  },
-  {
-    title: "Online Learning Platform",
-    description: "E-learning platform with course management, student enrollment, progress tracking, and online assessments.",
-    tech: ["Laravel", "React", "MySQL"],
-    type: "Education",
-    features: ["Course", "Student", "Enrollment", "Progress Tracking", "Online Assessments"]
-  },
-  {
-    title: "School Management System",
-    description: "Comprehensive school management system for student records, attendance, grading, and parent communication.",
-    tech: ["Laravel", "PHP", "MySQL"],
-    type: "Education",
-    features: ["Student", "Attendance", "Grading", "Parent Communication"]
-  },
-  {
-    title: "Sequences (Bulk Mail Sender)",
-    description: "Bulk email service platform for marketing campaigns and automated email sequences.",
-    tech: ["Laravel", "PHP", "MySQL"],
-    type: "SaaS",
-  },
-  {
-    title: "POS System",
-    description: "POS System for any kind of industries. Streamlines POS processes, manages POS records, and provides real-time view of POS data.",
-    tech: ["Laravel", "MySQL", "PHP", "JavaScript"],
-    type: "POS System",
-    features: ["POS", "Stock", "Stock Transfer", "Stock Adjustment", "Stock Report"]
-  },
-  {
-    title: "SSG Global",
-    description: "Global operations management platform for Super Star Group.",
-    tech: ["Laravel", "MySQL","React"],
-    type: "Enterprise",
-  },
-  {
-    title: "BIZZ Career (Job Portal)",
-    description: "Job portal platform connecting employers with job seekers, featuring advanced search and application tracking.",
-    tech: ["Laravel", "JavaScript", "MySQL"],
-    type: "Job Portal",
-  },
+export const about = [
+  "I'm an **ERP technical lead and fintech software engineer** in Dhaka with 8+ years of building multi-module business systems: supply chain, import/export, inventory, production, HR & payroll, document management and finance.",
+  "At **Super Star Group** I lead architecture and delivery for enterprise groups including RM Group, MBM Group and Tru Fabric, and I handle the DevOps side too: GitHub Actions pipelines, AWS servers, and rewriting slow SQL on high-volume tables.",
+  "I'm also the **founder of theLaraSoft**, a Dhaka-based agency that designs digital solutions. Alongside client work we build our own products: Dentora for dental clinics, LaraMeet for video meetings and Lara Sequence for bulk email.",
+  "I started in 2018 as a junior web developer on e-commerce, payment and courier integrations, and grew through Laravel projects into technical leadership. I like owning a system end to end, from requirements and UAT to deployment.",
 ];
 
 export const skills = {
@@ -332,6 +231,7 @@ export const technologies = [
 
 export const profile = {
   name: "MD. Omar Farook Hridoy",
+  founderOf: { name: "theLaraSoft", href: "https://thelarasoft.com/" },
   title: "ERP Technical Lead & Fintech Software Engineer",
   tagline: "Building Enterprise Solutions, One Line at a Time",
   summary: 'Technical Lead and ERP consultant delivering multi-module enterprise systems — SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management, and Finance/Fintech — across enterprise groups including Software Shop Ltd (SSL Commerze, SSL, CGL, OIL, OTL) RM Group, MBM Group, and Tru Fabric, backed by hands-on DevOps and query-level engineering.',

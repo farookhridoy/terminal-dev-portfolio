@@ -8,69 +8,69 @@
 */
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 224 32% 12%;
+    --background: 40 33% 97%;
+    --foreground: 190 55% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 32% 12%;
+    --card-foreground: 190 55% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 32% 12%;
+    --popover-foreground: 190 55% 11%;
 
-    --primary: 221 83% 47%;
+    --primary: 14 80% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 18% 94%;
-    --secondary-foreground: 224 32% 16%;
+    --secondary: 38 30% 93%;
+    --secondary-foreground: 190 45% 14%;
 
-    --muted: 220 18% 94%;
-    --muted-foreground: 220 10% 40%;
+    --muted: 38 30% 93%;
+    --muted-foreground: 190 12% 34%;
 
-    --accent: 221 70% 95%;
-    --accent-foreground: 221 83% 40%;
+    --accent: 14 75% 94%;
+    --accent-foreground: 14 80% 36%;
 
     --destructive: 0 72% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 14% 88%;
-    --input: 220 14% 88%;
-    --ring: 221 83% 47%;
+    --border: 36 20% 86%;
+    --input: 36 20% 86%;
+    --ring: 14 80% 45%;
 
     --radius: 0.875rem;
 
-    --success: 152 60% 36%;
+    --success: 160 60% 28%;
   }
 
   .dark {
-    --background: 224 26% 7%;
-    --foreground: 214 24% 94%;
+    --background: 190 40% 7%;
+    --foreground: 40 25% 94%;
 
-    --card: 224 24% 10%;
-    --card-foreground: 214 24% 94%;
+    --card: 190 32% 10%;
+    --card-foreground: 40 25% 94%;
 
-    --popover: 224 24% 10%;
-    --popover-foreground: 214 24% 94%;
+    --popover: 190 32% 10%;
+    --popover-foreground: 40 25% 94%;
 
-    --primary: 217 91% 63%;
-    --primary-foreground: 224 40% 8%;
+    --primary: 16 88% 62%;
+    --primary-foreground: 190 50% 8%;
 
-    --secondary: 224 20% 14%;
-    --secondary-foreground: 214 24% 90%;
+    --secondary: 190 24% 14%;
+    --secondary-foreground: 40 25% 90%;
 
-    --muted: 224 20% 14%;
-    --muted-foreground: 218 12% 64%;
+    --muted: 190 24% 14%;
+    --muted-foreground: 40 10% 66%;
 
-    --accent: 224 30% 16%;
-    --accent-foreground: 217 91% 72%;
+    --accent: 190 28% 16%;
+    --accent-foreground: 16 90% 74%;
 
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 224 16% 18%;
-    --input: 224 16% 18%;
-    --ring: 217 91% 63%;
+    --border: 190 20% 18%;
+    --input: 190 20% 18%;
+    --ring: 16 88% 62%;
 
-    --success: 152 55% 50%;
+    --success: 160 55% 52%;
   }
 }
 
@@ -85,7 +85,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
   }
 
   .font-mono {
@@ -116,7 +116,7 @@
 
 @layer utilities {
   /* Following the Contact link (or #contact) briefly highlights the contact card. */
-  #contact:target > section:first-child {
+  #contact:target > div {
     animation: flash 1.4s ease-out;
   }
   @keyframes flash {
@@ -124,24 +124,51 @@
     100% { box-shadow: 0 0 0 14px hsl(var(--primary) / 0); }
   }
 
-  /* Banner: a soft blue glow over a fine grid that fades out towards the bottom. */
+  /* Banner: warm glow over a fine grid, with two slow-drifting blobs. */
   .banner-grid {
     position: relative;
+    overflow: hidden;
     background:
-      radial-gradient(60% 120% at 12% 0%, hsl(var(--primary) / 0.32), transparent 70%),
-      radial-gradient(50% 100% at 92% 20%, hsl(var(--primary) / 0.16), transparent 70%),
-      hsl(var(--card));
+      radial-gradient(60% 130% at 10% 0%, hsl(var(--primary) / 0.34), transparent 70%),
+      radial-gradient(45% 110% at 95% 30%, hsl(var(--primary) / 0.18), transparent 70%),
+      hsl(var(--secondary));
     border-bottom: 1px solid hsl(var(--border));
   }
+  .banner-grid::before,
   .banner-grid::after {
     content: "";
     position: absolute;
+    pointer-events: none;
+  }
+  .banner-grid::before {
+    width: 22rem;
+    height: 22rem;
+    left: 55%;
+    top: -12rem;
+    border-radius: 9999px;
+    background: hsl(var(--primary) / 0.22);
+    filter: blur(70px);
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+  .banner-grid::after {
     inset: 0;
     background-image:
-      linear-gradient(to right, hsl(var(--foreground) / 0.07) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--foreground) / 0.07) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--foreground) / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.06) 1px, transparent 1px);
     background-size: 32px 32px;
     mask-image: linear-gradient(to bottom, black, transparent 95%);
     -webkit-mask-image: linear-gradient(to bottom, black, transparent 95%);
+  }
+  @keyframes drift {
+    from { transform: translate3d(-3rem, 0, 0); }
+    to { transform: translate3d(5rem, 2rem, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .banner-grid::before { animation: none; }
+  }
+
+  /* Small uppercase label above section headings, as on the Lara product sites. */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-primary;
   }
 }
