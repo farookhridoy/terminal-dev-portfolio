@@ -279,12 +279,36 @@ export const liveProjects: {
   href: string;
 }[] = [
   {
+    name: "Super Star Group",
+    category: "Corporate & real estate",
+    line: "Corporate website for Super Star Group, a leading Bangladeshi maker of lighting, cables, fans, switches and home appliances.",
+    tags: ["Corporate", "Manufacturing"],
+    image: "/images/projects/ssgbd.jpg",
+    href: "https://ssgbd.com/",
+  },
+  {
+    name: "Tavrix",
+    category: "SaaS & tools",
+    line: "Free, open-source Mac app with an SSH terminal, drag-and-drop file manager and tabbed editor in one window.",
+    tags: ["Open source", "Electron"],
+    image: "/images/projects/tavrix.jpg",
+    href: "https://tavrix.farookhridoy.com/",
+  },
+  {
     name: "RacRolls",
     category: "E-commerce",
     line: "Online store for premium menswear, with panjabi, shirt and t-shirt collections, based in Dhaka.",
     tags: ["E-commerce", "Fashion"],
     image: "/images/projects/racrolls.jpg",
     href: "https://racrolls.global/",
+  },
+  {
+    name: "HairGauge",
+    category: "SaaS & tools",
+    line: "The hair transplant OS for verified clinics: consultation, booking, procedure records, recovery and verification in one system.",
+    tags: ["SaaS", "Healthcare"],
+    image: "/images/projects/hairgauge.jpg",
+    href: "https://hairgauge.com/",
   },
   {
     name: "Stride",
@@ -319,14 +343,6 @@ export const liveProjects: {
     href: "https://cybersolveiq.com/",
   },
   {
-    name: "Super Star Group",
-    category: "Corporate & real estate",
-    line: "Corporate website for Super Star Group, a leading Bangladeshi maker of lighting, cables, fans, switches and home appliances.",
-    tags: ["Corporate", "Manufacturing"],
-    image: "/images/projects/ssgbd.jpg",
-    href: "https://ssgbd.com/",
-  },
-  {
     name: "SSG Holdings",
     category: "Corporate & real estate",
     line: "Website for SSG Holdings Limited, a Dhaka-based company under Super Star Group, showing its building projects.",
@@ -349,22 +365,6 @@ export const liveProjects: {
     tags: ["Real estate"],
     image: "/images/projects/pacific.jpg",
     href: "https://pacificapartmentsltd.com/",
-  },
-  {
-    name: "HairGauge",
-    category: "SaaS & tools",
-    line: "The hair transplant OS for verified clinics: consultation, booking, procedure records, recovery and verification in one system.",
-    tags: ["SaaS", "Healthcare"],
-    image: "/images/projects/hairgauge.jpg",
-    href: "https://hairgauge.com/",
-  },
-  {
-    name: "Tavrix",
-    category: "SaaS & tools",
-    line: "Free, open-source Mac app with an SSH terminal, drag-and-drop file manager and tabbed editor in one window.",
-    tags: ["Open source", "Electron"],
-    image: "/images/projects/tavrix.jpg",
-    href: "https://tavrix.farookhridoy.com/",
   },
 ];
 
