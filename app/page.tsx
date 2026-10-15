@@ -10,6 +10,7 @@ import WorkTab from "@/components/shell/WorkTab";
 import PostsTab from "@/components/shell/PostsTab";
 import RightRail from "@/components/shell/RightRail";
 import ContactBand from "@/components/shell/ContactBand";
+import ContactPage from "@/components/shell/ContactPage";
 import StructuredData from "@/components/seo/StructuredData";
 
 type Tab = "resume" | "work" | "posts";
@@ -24,6 +25,8 @@ const isTab = (v: string): v is Tab => tabs.some((t) => t.id === v);
 export default function Home() {
     const [tab, setTab] = useState<Tab>("resume");
     const [active, setActive] = useState<SectionId>("profile");
+    // "contact" is its own page inside the shell; everything else is the profile with its tabs.
+    const [view, setView] = useState<"profile" | "contact">("profile");
     const [collapsed, setCollapsed] = useState(false);
 
     // Remember the sidebar choice. Storage can be blocked, so every access is guarded.
@@ -44,16 +47,25 @@ export default function Home() {
             return !c;
         });
 
-    // The address bar (#resume, #work, #posts, #contact) picks the tab, so tabs can be linked to.
+    // The address bar (#resume, #work, #posts, #contact) picks the view and tab, so everything can be linked to.
     const syncFromHash = useCallback(() => {
         const h = window.location.hash.slice(1);
+        if (h === "contact") {
+            setView("contact");
+            setActive("contact");
+            window.scrollTo(0, 0);
+            return;
+        }
+        setView("profile");
         if (isTab(h)) {
             setTab(h);
+            setActive(h);
             // Nav links point at #resume / #work / #posts, which are not elements, so scroll to the tabs ourselves.
             requestAnimationFrame(() => document.getElementById("tabs")?.scrollIntoView());
+        } else if (h === "profile") {
+            setActive("profile");
+            window.scrollTo(0, 0);
         }
-        if (h === "resume" || h === "work" || h === "posts") setActive(h);
-        else if (h === "contact" || h === "profile") setActive(h);
     }, []);
 
     useEffect(() => {
@@ -79,7 +91,7 @@ export default function Home() {
         );
         targets.forEach((t) => io.observe(t));
         return () => io.disconnect();
-    }, [tab]);
+    }, [tab, view]);
 
     function choose(next: Tab) {
         setTab(next);
@@ -110,59 +122,67 @@ export default function Home() {
                 <Sidebar active={active} collapsed={collapsed} onToggle={toggleSidebar} />
 
                 <main className="min-w-0 pb-6 lg:pb-0">
-                    <ProfileHero />
+                    {view === "contact" ? (
+                        <motion.div key="contact" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+                            <ContactPage />
+                        </motion.div>
+                    ) : (
+                        <>
+                            <ProfileHero />
 
-                    <div id="tabs" className="scroll-mt-16">
-                        <div
-                            role="tablist"
-                            aria-label="Portfolio sections"
-                            className="sticky top-[57px] z-20 flex justify-center gap-8 border-b border-border bg-background/90 backdrop-blur lg:top-0"
-                        >
-                            {tabs.map((t) => (
-                                <button
-                                    key={t.id}
-                                    role="tab"
-                                    id={`tab-${t.id}`}
-                                    aria-selected={tab === t.id}
-                                    aria-controls={`panel-${t.id}`}
-                                    onClick={() => choose(t.id)}
-                                    className={`-mb-px border-b-2 px-1 py-3.5 text-sm font-semibold tracking-wide transition-colors ${
-                                        tab === t.id
-                                            ? "border-primary text-primary"
-                                            : "border-transparent text-muted-foreground hover:text-foreground"
-                                    }`}
+                            <div id="tabs" className="scroll-mt-16">
+                                <div
+                                    role="tablist"
+                                    aria-label="Portfolio sections"
+                                    className="sticky top-[57px] z-20 flex justify-center gap-8 border-b border-border bg-background/90 backdrop-blur lg:top-0"
                                 >
-                                    {t.label}
-                                </button>
-                            ))}
-                        </div>
+                                    {tabs.map((t) => (
+                                        <button
+                                            key={t.id}
+                                            role="tab"
+                                            id={`tab-${t.id}`}
+                                            aria-selected={tab === t.id}
+                                            aria-controls={`panel-${t.id}`}
+                                            onClick={() => choose(t.id)}
+                                            className={`-mb-px border-b-2 px-1 py-3.5 text-sm font-semibold tracking-wide transition-colors ${
+                                                tab === t.id
+                                                    ? "border-primary text-primary"
+                                                    : "border-transparent text-muted-foreground hover:text-foreground"
+                                            }`}
+                                        >
+                                            {t.label}
+                                        </button>
+                                    ))}
+                                </div>
 
-                        <AnimatePresence mode="wait" initial={false}>
-                            <motion.div
-                                key={tab}
-                                role="tabpanel"
-                                id={`panel-${tab}`}
-                                aria-labelledby={`tab-${tab}`}
-                                className="mx-auto max-w-3xl px-5 py-10 sm:px-8"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -6 }}
-                                transition={{ duration: 0.18 }}
-                            >
-                                {tab === "resume" && <ResumeTab />}
-                                {tab === "work" && <WorkTab />}
-                                {tab === "posts" && <PostsTab />}
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
+                                <AnimatePresence mode="wait" initial={false}>
+                                    <motion.div
+                                        key={tab}
+                                        role="tabpanel"
+                                        id={`panel-${tab}`}
+                                        aria-labelledby={`tab-${tab}`}
+                                        className="mx-auto max-w-3xl px-5 py-10 sm:px-8"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -6 }}
+                                        transition={{ duration: 0.18 }}
+                                    >
+                                        {tab === "resume" && <ResumeTab />}
+                                        {tab === "work" && <WorkTab />}
+                                        {tab === "posts" && <PostsTab />}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
 
-                    <ContactBand />
+                            <ContactBand />
+                        </>
+                    )}
                 </main>
 
                 {/* One rail: beside the content on wide screens, under it everywhere else. */}
                 <aside className="px-5 pb-28 sm:px-8 lg:col-start-2 lg:pb-10 xl:col-start-3 xl:row-start-1 xl:sticky xl:top-0 xl:h-screen xl:overflow-y-auto xl:border-l xl:border-border xl:px-5 xl:py-8">
                     <div className="mx-auto max-w-3xl xl:max-w-none">
-                        <RightRail />
+                        <RightRail compact={view === "contact"} />
                     </div>
                 </aside>
             </div>

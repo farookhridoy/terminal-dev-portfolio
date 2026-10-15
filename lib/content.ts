@@ -253,6 +253,7 @@ export const stats = [
 ];
 
 export const socialLinks = [
+  { id: "whatsapp", label: "WhatsApp", handle: "wa.me/farookhriody", href: "https://wa.me/farookhriody" },
   { id: "github", label: "GitHub", handle: "@farookhridoy", href: "https://github.com/farookhridoy" },
   { id: "linkedin", label: "LinkedIn", handle: "in/farookhridoy", href: "https://linkedin.com/in/farookhridoy" },
   { id: "x", label: "X", handle: "@FarookHridoy", href: "https://x.com/FarookHridoy" },
@@ -385,3 +386,29 @@ export const hiddenRepos = [
   "job-portal-app-d",
   "elk-project-13",
 ];
+
+// Contact page. Only things already stated elsewhere on the site: no prices, no availability claims.
+export const workWithMe = {
+  main: {
+    title: "Build something together",
+    text: "ERP systems, fintech platforms or a product from scratch. I take it from requirements and architecture through UAT to deployment.",
+  },
+  cards: [
+    {
+      icon: "layers",
+      title: "ERP consulting",
+      text: "Multi-module ERP across supply chain, import/export, inventory, production, HR & payroll, documents and finance.",
+    },
+    {
+      icon: "gauge",
+      title: "Technical leadership and DevOps",
+      text: "Architecture and delivery for your team, GitHub Actions pipelines, AWS servers and faster SQL on busy tables.",
+    },
+    {
+      icon: "building",
+      title: "Work with theLaraSoft",
+      text: "Our Dhaka agency designs digital solutions, websites and platforms for clients and builds its own products.",
+      href: "https://thelarasoft.com/",
+    },
+  ],
+} as const;

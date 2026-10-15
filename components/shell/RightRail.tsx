@@ -1,10 +1,11 @@
-import { ArrowUpRight, Facebook, Github, Instagram, Linkedin, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Facebook, Github, Instagram, Linkedin, MessageCircle, type LucideIcon } from "lucide-react";
 import { profile, socialLinks } from "@/lib/content";
 
 // lucide has no X logo, so X is drawn as a letter.
 const XMark: LucideIcon = (() => <span aria-hidden="true" className="text-sm font-bold leading-none">X</span>) as unknown as LucideIcon;
 
-const icons: Record<(typeof socialLinks)[number]["id"], LucideIcon> = {
+export const socialIcons: Record<(typeof socialLinks)[number]["id"], LucideIcon> = {
+  whatsapp: MessageCircle,
   github: Github,
   linkedin: Linkedin,
   x: XMark,
@@ -13,9 +14,10 @@ const icons: Record<(typeof socialLinks)[number]["id"], LucideIcon> = {
 };
 
 /** Contact card and profile links. Sits in the right column on wide screens and under the content elsewhere. */
-export default function RightRail() {
+export default function RightRail({ compact = false }: { compact?: boolean }) {
   return (
     <div className="space-y-6">
+      {!compact && (
       <section className="rounded-2xl border border-border bg-card p-5">
         <h2 className="text-base font-semibold">Say hello</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -31,6 +33,7 @@ export default function RightRail() {
           Message on LinkedIn
         </a>
       </section>
+      )}
 
       <section aria-labelledby="find-me">
         <h2 id="find-me" className="mb-3 px-1 text-base font-semibold">
@@ -38,7 +41,7 @@ export default function RightRail() {
         </h2>
         <ul className="space-y-2">
           {socialLinks.map(({ id, label, handle, href }) => {
-            const Icon = icons[id];
+            const Icon = socialIcons[id];
             return (
               <li key={id}>
                 <a

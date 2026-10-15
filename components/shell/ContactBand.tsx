@@ -1,13 +1,13 @@
 "use client";
 
-import { ArrowUpRight, Linkedin, Github } from "lucide-react";
+import { ArrowUpRight, Linkedin } from "lucide-react";
 import Reveal from "./Reveal";
 import { profile } from "@/lib/content";
 
 /** Closing call to action. The nav's Contact link and the "Get in touch" button both land here. */
 export default function ContactBand() {
   return (
-    <section id="contact" className="scroll-mt-24 px-5 pb-10 sm:px-8">
+    <section className="px-5 pb-10 sm:px-8">
       <Reveal className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-border bg-foreground p-7 text-background sm:p-10">
         <div
           aria-hidden="true"
@@ -33,6 +33,13 @@ export default function ContactBand() {
             Message on LinkedIn
           </a>
           <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-full border border-background/30 px-6 py-3 text-sm font-semibold transition-colors hover:bg-background/10"
+          >
+            All ways to reach me
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+          <a
             href={profile.founderOf.href}
             target="_blank"
             rel="noopener noreferrer"
@@ -40,15 +47,6 @@ export default function ContactBand() {
           >
             Work with {profile.founderOf.name}
             <ArrowUpRight className="h-4 w-4" />
-          </a>
-          <a
-            href={`https://github.com/${profile.githubUser}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-background/30 px-5 py-3 text-sm font-semibold transition-colors hover:bg-background/10"
-          >
-            <Github className="h-4 w-4" />
-            GitHub
           </a>
         </div>
       </Reveal>
