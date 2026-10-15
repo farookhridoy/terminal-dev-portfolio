@@ -24,6 +24,25 @@ const isTab = (v: string): v is Tab => tabs.some((t) => t.id === v);
 export default function Home() {
     const [tab, setTab] = useState<Tab>("resume");
     const [active, setActive] = useState<SectionId>("profile");
+    const [collapsed, setCollapsed] = useState(false);
+
+    // Remember the sidebar choice. Storage can be blocked, so every access is guarded.
+    useEffect(() => {
+        try {
+            setCollapsed(localStorage.getItem("sidebar") === "collapsed");
+        } catch {
+            /* storage unavailable */
+        }
+    }, []);
+    const toggleSidebar = () =>
+        setCollapsed((c) => {
+            try {
+                localStorage.setItem("sidebar", c ? "open" : "collapsed");
+            } catch {
+                /* storage unavailable */
+            }
+            return !c;
+        });
 
     // The address bar (#resume, #work, #posts, #contact) picks the tab, so tabs can be linked to.
     const syncFromHash = useCallback(() => {
@@ -81,8 +100,14 @@ export default function Home() {
                 Skip to content
             </a>
             <MobileBar active={active} />
-            <div className="mx-auto grid min-h-screen max-w-[1500px] lg:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[16rem_minmax(0,1fr)_21rem]">
-                <Sidebar active={active} />
+            <div
+                className={`mx-auto grid min-h-screen max-w-[1500px] transition-[grid-template-columns] duration-300 ${
+                    collapsed
+                        ? "lg:grid-cols-[4.5rem_minmax(0,1fr)] xl:grid-cols-[4.5rem_minmax(0,1fr)_21rem]"
+                        : "lg:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[16rem_minmax(0,1fr)_21rem]"
+                }`}
+            >
+                <Sidebar active={active} collapsed={collapsed} onToggle={toggleSidebar} />
 
                 <main className="min-w-0 pb-6 lg:pb-0">
                     <ProfileHero />

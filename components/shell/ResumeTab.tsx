@@ -1,22 +1,9 @@
-import { Briefcase, GraduationCap, Languages, MapPin, User, Wrench } from "lucide-react";
+import { Briefcase, GraduationCap, Languages, MapPin, Target, User, Wrench } from "lucide-react";
 import Chip from "./Chip";
 import Rich from "./Rich";
 import Reveal from "./Reveal";
 import LocalClock from "./LocalClock";
-import { about, education, experiences, profile, skills } from "@/lib/content";
-
-const skillGroups: { key: keyof typeof skills; label: string }[] = [
-  { key: "backend", label: "Backend" },
-  { key: "frontend", label: "Frontend" },
-  { key: "database", label: "Databases" },
-  { key: "server", label: "Servers and hosting" },
-  { key: "devOps", label: "DevOps" },
-  { key: "aiTools", label: "AI tools" },
-  { key: "tools", label: "Tools" },
-  { key: "methodologies", label: "Methodologies" },
-  { key: "softSkills", label: "Soft skills" },
-  { key: "languages", label: "Languages" },
-];
+import { about, aiToolsShort, education, experiences, profile, skills, stackShort, topSkills } from "@/lib/content";
 
 function Heading({ icon: Icon, children }: { icon: typeof Briefcase; children: React.ReactNode }) {
   return (
@@ -26,15 +13,6 @@ function Heading({ icon: Icon, children }: { icon: typeof Briefcase; children: R
     </h2>
   );
 }
-
-// A skill listed in two groups (Docker, Linux) is shown once, in the first group that has it.
-const seen = new Set<string>();
-const groups = skillGroups
-  .map(({ key, label }) => ({
-    label,
-    items: skills[key].filter((s) => (seen.has(s.name) ? false : (seen.add(s.name), true))),
-  }))
-  .filter((g) => g.items.length > 0);
 
 export default function ResumeTab() {
   return (
@@ -125,19 +103,36 @@ export default function ResumeTab() {
         </ul>
       </Reveal>
 
-      <Reveal as="section">
-        <Heading icon={Wrench}>Skills and tools</Heading>
-        <div className="space-y-5">
-          {groups.map(({ label, items }) => (
-            <div key={label}>
-              <h3 className="mb-2 text-sm font-medium text-muted-foreground">{label}</h3>
-              <div className="flex flex-wrap gap-2">
-                {items.map((s) => (
-                  <Chip key={s.name}>{s.name}</Chip>
-                ))}
-              </div>
-            </div>
-          ))}
+      <Reveal as="section" className="space-y-10">
+        <div>
+          <Heading icon={Target}>Top skills</Heading>
+          <div className="flex flex-wrap gap-2.5">
+            {topSkills.map((t) => (
+              <span
+                key={t}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium"
+              >
+                <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <Heading icon={Wrench}>Skills and tools</Heading>
+          <div className="flex flex-wrap gap-2.5">
+            {aiToolsShort.map((t) => (
+              <Chip key={t} tone="accent">
+                {t}
+              </Chip>
+            ))}
+          </div>
+          <div className="mt-2.5 flex flex-wrap gap-2.5">
+            {stackShort.map((t) => (
+              <Chip key={t}>{t}</Chip>
+            ))}
+          </div>
         </div>
       </Reveal>
     </div>

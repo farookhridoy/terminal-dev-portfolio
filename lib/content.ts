@@ -265,3 +265,110 @@ export const repoFallbackDescriptions: Record<string, string> = {
   "terminal-dev-portfolio": "This portfolio site, built with Next.js and Tailwind CSS.",
   "approval-matrix-package": "Approval matrix package for Laravel apps.",
 };
+
+// Live websites and platforms. Descriptions are taken from what each site says about itself.
+export const projectCategories = ["E-commerce", "EdTech", "Corporate & real estate", "SaaS & tools"] as const;
+export type ProjectCategory = (typeof projectCategories)[number];
+
+export const liveProjects: {
+  name: string;
+  category: ProjectCategory;
+  line: string;
+  tags: string[];
+  image: string;
+  href: string;
+}[] = [
+  {
+    name: "RacRolls",
+    category: "E-commerce",
+    line: "Online store for premium menswear, with panjabi, shirt and t-shirt collections, based in Dhaka.",
+    tags: ["E-commerce", "Fashion"],
+    image: "/images/projects/racrolls.jpg",
+    href: "https://racrolls.global/",
+  },
+  {
+    name: "Stride",
+    category: "E-commerce",
+    line: "Multi-category online shop for shoes and lifestyle products, with brands, categories, wishlist, cart and blog.",
+    tags: ["E-commerce", "LaraCommerce"],
+    image: "/images/projects/stride.jpg",
+    href: "https://stride.thelarasoft.com/",
+  },
+  {
+    name: "Farm Clearing Sales",
+    category: "E-commerce",
+    line: "Australian listings site that gathers clearing, private and dealer farm sales into one category view.",
+    tags: ["Marketplace", "Australia"],
+    image: "/images/projects/farmclearing.jpg",
+    href: "https://farmclearingsales.com.au/",
+  },
+  {
+    name: "Learn With TEP",
+    category: "EdTech",
+    line: "Online learning platform for the IT field, with course catalogue, training programmes and subscriptions.",
+    tags: ["EdTech", "Courses"],
+    image: "/images/projects/lwt.jpg",
+    href: "https://lwt.thelarasoft.com/",
+  },
+  {
+    name: "CyberSolveIQ CyberDIY",
+    category: "EdTech",
+    line: "Sign-in portal for CyberSolveIQ's CyberDIY assessments platform.",
+    tags: ["Assessments", "Portal"],
+    image: "/images/projects/cybersolveiq.jpg",
+    href: "https://assessments.cybersolveiq.com/sign-in",
+  },
+  {
+    name: "Super Star Group",
+    category: "Corporate & real estate",
+    line: "Corporate website for Super Star Group, a leading Bangladeshi maker of lighting, cables, fans, switches and home appliances.",
+    tags: ["Corporate", "Manufacturing"],
+    image: "/images/projects/ssgbd.jpg",
+    href: "https://ssgbd.com/",
+  },
+  {
+    name: "SSG Holdings",
+    category: "Corporate & real estate",
+    line: "Website for SSG Holdings Limited, a Dhaka-based company under Super Star Group, showing its building projects.",
+    tags: ["Corporate", "Real estate"],
+    image: "/images/projects/ssgholdings.jpg",
+    href: "https://www.ssgholdingsltd.com/",
+  },
+  {
+    name: "Shah Homes",
+    category: "Corporate & real estate",
+    line: "Official website of Shah Homes Ltd, a real estate company that builds and hands over residential buildings.",
+    tags: ["Real estate"],
+    image: "/images/projects/shahhomes.jpg",
+    href: "https://shahhomesltd.com/",
+  },
+  {
+    name: "Pacific Apartments",
+    category: "Corporate & real estate",
+    line: "Website for a Dhaka real estate developer building residential apartments since 1996, with featured projects.",
+    tags: ["Real estate"],
+    image: "/images/projects/pacific.jpg",
+    href: "https://pacificapartmentsltd.com/",
+  },
+  {
+    name: "HairGauge",
+    category: "SaaS & tools",
+    line: "The hair transplant OS for verified clinics: consultation, booking, procedure records, recovery and verification in one system.",
+    tags: ["SaaS", "Healthcare"],
+    image: "/images/projects/hairgauge.jpg",
+    href: "https://hairgauge.com/",
+  },
+  {
+    name: "Tavrix",
+    category: "SaaS & tools",
+    line: "Free, open-source Mac app with an SSH terminal, drag-and-drop file manager and tabbed editor in one window.",
+    tags: ["Open source", "Electron"],
+    image: "/images/projects/tavrix.jpg",
+    href: "https://tavrix.farookhridoy.com/",
+  },
+];
+
+// Short lists for the Resume tab.
+export const topSkills = ["ERP Consulting", "Technical Leadership", "Fintech", "DevOps", "Team Leadership"];
+export const aiToolsShort = ["Claude", "ChatGPT", "GitHub Copilot", "Cursor"];
+export const stackShort = ["Laravel", "PHP", "JavaScript", "React", "Next.js", "Vue.js", "Tailwind CSS", "MySQL", "AWS", "Docker", "GitHub Actions", "Git"];

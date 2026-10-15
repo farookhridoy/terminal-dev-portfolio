@@ -124,47 +124,16 @@
     100% { box-shadow: 0 0 0 14px hsl(var(--primary) / 0); }
   }
 
-  /* Banner: warm glow over a fine grid, with two slow-drifting blobs. */
-  .banner-grid {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(60% 130% at 10% 0%, hsl(var(--primary) / 0.34), transparent 70%),
-      radial-gradient(45% 110% at 95% 30%, hsl(var(--primary) / 0.18), transparent 70%),
-      hsl(var(--secondary));
-    border-bottom: 1px solid hsl(var(--border));
+  /* Contribution cells rise in left to right (see ContributionBanner). */
+  .banner-cell {
+    animation: cell-in 0.6s ease-out both;
   }
-  .banner-grid::before,
-  .banner-grid::after {
-    content: "";
-    position: absolute;
-    pointer-events: none;
-  }
-  .banner-grid::before {
-    width: 22rem;
-    height: 22rem;
-    left: 55%;
-    top: -12rem;
-    border-radius: 9999px;
-    background: hsl(var(--primary) / 0.22);
-    filter: blur(70px);
-    animation: drift 14s ease-in-out infinite alternate;
-  }
-  .banner-grid::after {
-    inset: 0;
-    background-image:
-      linear-gradient(to right, hsl(var(--foreground) / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--foreground) / 0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
-    mask-image: linear-gradient(to bottom, black, transparent 95%);
-    -webkit-mask-image: linear-gradient(to bottom, black, transparent 95%);
-  }
-  @keyframes drift {
-    from { transform: translate3d(-3rem, 0, 0); }
-    to { transform: translate3d(5rem, 2rem, 0); }
+  @keyframes cell-in {
+    from { opacity: 0; transform: scaleY(0.4); }
+    to { opacity: 1; transform: scaleY(1); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .banner-grid::before { animation: none; }
+    .banner-cell { animation: none; }
   }
 
   /* Small uppercase label above section headings, as on the Lara product sites. */

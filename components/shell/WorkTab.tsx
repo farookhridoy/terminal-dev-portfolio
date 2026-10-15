@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Layers, Star, Tag } from "lucide-react";
 import Chip from "./Chip";
 import ProductCard from "./ProductCard";
 import Reveal from "./Reveal";
-import { products, projects, profile, repoFallbackDescriptions } from "@/lib/content";
+import { liveProjects, projectCategories, products, projects, profile, repoFallbackDescriptions, type ProjectCategory } from "@/lib/content";
 import { useGithubRepos } from "@/hooks/use-github-repos";
 
 function OpenSource() {
@@ -89,6 +90,74 @@ function SectionHead({ eyebrow, title, hint }: { eyebrow: string; title: string;
   );
 }
 
+const GALLERY_FIRST = 6;
+
+function LiveProjects() {
+  const [cat, setCat] = useState<ProjectCategory | "All">("All");
+  const [more, setMore] = useState(false);
+  const list = cat === "All" ? liveProjects : liveProjects.filter((p) => p.category === cat);
+  const shown = more ? list : list.slice(0, GALLERY_FIRST);
+  const pick = (c: ProjectCategory | "All") => {
+    setCat(c);
+    setMore(false);
+  };
+  return (
+    <section aria-label="Live projects">
+      <SectionHead
+        eyebrow="Websites and platforms"
+        title="Live projects"
+        hint="A selection of sites and platforms I have built, across e-commerce, EdTech, corporate and SaaS."
+      />
+      <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
+        {(["All", ...projectCategories] as const).map((c) => (
+          <button
+            key={c}
+            type="button"
+            aria-pressed={cat === c}
+            onClick={() => pick(c)}
+            className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+              cat === c
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-card text-muted-foreground hover:border-primary/50 hover:text-foreground"
+            }`}
+          >
+            {c}
+            <span className="ml-1.5 text-xs opacity-70">
+              {c === "All" ? liveProjects.length : liveProjects.filter((p) => p.category === c).length}
+            </span>
+          </button>
+        ))}
+      </div>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.ul layout className="grid gap-4 sm:grid-cols-2">
+          {shown.map((p) => (
+            <motion.li
+              layout
+              key={p.name}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.22 }}
+            >
+              <ProductCard p={{ name: p.name, line: p.line, tags: p.tags, image: p.image, href: p.href }} />
+            </motion.li>
+          ))}
+        </motion.ul>
+      </AnimatePresence>
+      {list.length > GALLERY_FIRST && (
+        <button
+          type="button"
+          onClick={() => setMore((v) => !v)}
+          aria-expanded={more}
+          className="mx-auto mt-5 block rounded-full border border-border bg-card px-6 py-2.5 text-sm font-medium transition-colors hover:border-primary/60"
+        >
+          {more ? "Show fewer" : `Show all ${list.length}`}
+        </button>
+      )}
+    </section>
+  );
+}
+
 export default function WorkTab() {
   const [featured, ...rest] = projects;
   const [all, setAll] = useState(false);
@@ -99,7 +168,7 @@ export default function WorkTab() {
         <SectionHead
           eyebrow="theLaraSoft"
           title="Products I built"
-          hint="Live products from the agency I founded. Each card opens the real site."
+          hint="Products from the agency I founded. Each card opens the real site."
         />
         <div className="grid gap-4 sm:grid-cols-2">
           {products.map((p, i) => (
@@ -109,6 +178,8 @@ export default function WorkTab() {
           ))}
         </div>
       </section>
+
+      <LiveProjects />
 
       <Reveal as="section">
         <OpenSource />

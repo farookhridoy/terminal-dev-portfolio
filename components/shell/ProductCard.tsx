@@ -1,8 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Chip from "./Chip";
-import type { products } from "@/lib/content";
-
-type Product = (typeof products)[number];
+type Product = { name: string; line: string; tags: readonly string[]; image: string; href: string };
 
 /** A product built under theLaraSoft: a browser-framed screenshot of the live site, with a one-line summary. */
 export default function ProductCard({ p }: { p: Product }) {

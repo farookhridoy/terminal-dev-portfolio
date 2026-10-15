@@ -6,7 +6,8 @@ import { MapPin, Briefcase, Share2, Check } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Chip from "./Chip";
 import CountUp from "./CountUp";
-import { profile, stats, technologies } from "@/lib/content";
+import ContributionBanner from "./ContributionBanner";
+import { aiToolsShort, profile, stats, technologies } from "@/lib/content";
 
 function useLocalTime(timeZone: string) {
   const [time, setTime] = useState("");
@@ -40,7 +41,7 @@ export default function ProfileHero() {
 
   return (
     <section id="profile" className="scroll-mt-20">
-      <div className="banner-grid h-28 w-full sm:h-36" aria-hidden="true" />
+      <ContributionBanner />
 
       <motion.div
         className="px-5 pb-6 sm:px-8"
@@ -48,18 +49,18 @@ export default function ProfileHero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="-mt-12 flex flex-col gap-4 sm:-mt-14 sm:flex-row sm:items-end">
+        <div className="-mt-12 flex flex-col gap-4 sm:-mt-14 sm:flex-row sm:items-start">
           <Avatar className="h-24 w-24 shrink-0 border-4 border-background shadow-sm sm:h-28 sm:w-28">
             <AvatarImage src={profile.avatar} alt={profile.name} />
             <AvatarFallback className="bg-secondary text-2xl font-semibold text-primary">OF</AvatarFallback>
           </Avatar>
 
-          <div className="min-w-0 flex-1 sm:pb-1">
+          <div className="min-w-0 flex-1 sm:pt-[3.75rem]">
             <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{profile.name}</h1>
             <p className="mt-0.5 text-base text-muted-foreground">{profile.title}</p>
           </div>
 
-          <div className="flex gap-2 sm:pb-1">
+          <div className="flex gap-2 sm:pt-[3.5rem]">
             <a
               href="#contact"
               className="rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
@@ -103,7 +104,15 @@ export default function ProfileHero() {
           </span>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2" aria-label="Core technologies">
+        <div className="mt-4 flex flex-wrap gap-2" aria-label="AI tools I work with">
+          {aiToolsShort.map((t) => (
+            <Chip key={t} tone="accent">
+              {t}
+            </Chip>
+          ))}
+        </div>
+
+        <div className="mt-2 flex flex-wrap gap-2" aria-label="Core technologies">
           {technologies.slice(0, 10).map((t) => (
             <Chip key={t.name}>{t.name}</Chip>
           ))}
