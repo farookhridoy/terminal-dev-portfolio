@@ -154,14 +154,14 @@ export const projects = [
     description: "Job & Requirement application for UK-based company. System admin can post jobs, manage recruitment procedures, and candidates can apply and take online exams virtually.",
     tech: ["Laravel", "React", "MySQL"],
     type: "HR System",
-    features: ["Job", "Recruitment", "Exam", "Cheeting Prevention", "Job Report"]
+    features: ["Job", "Recruitment", "Exam", "Cheating Prevention", "Job Report"]
   },
   {
-    title: "Traning Management System",
-    description: "Traning Management System for any kind of industries. Streamlines traning processes, manages traning records, and provides real-time view of traning data. and take exam virtually. cheeting prevention system included.",
+    title: "Training Management System",
+    description: "Training Management System for any kind of industries. Streamlines training processes, manages training records, and provides real-time view of training data. and take exam virtually. cheating prevention system included.",
     tech: ["Laravel", "MySQL", "PHP"],
-    type: "Traning System",
-    features: ["Traning", "Exam", "Cheeting Prevention", "Traning Report"]
+    type: "Training System",
+    features: ["Training", "Exam", "Cheating Prevention", "Training Report"]
   },
 
   {
@@ -265,7 +265,7 @@ export const skills = {
   devOps: [
     { name: "Docker", level: 80 },
     { name: "Linux", level: 90 },
-    { name: "gitHub Actions", level: 85 },
+    { name: "GitHub Actions", level: 85 },
 
   ],
   tools: [
@@ -305,7 +305,11 @@ export const skills = {
   ],
 };
 
-export const linkedinPosts = ["https://www.linkedin.com/embed/feed/update/urn:li:share:7281906843088560128?collapsed=1", "https://www.linkedin.com/embed/feed/update/urn:li:share:7122785517661782016?collapsed=1", "https://www.linkedin.com/embed/feed/update/urn:li:share:7099701593217921024?collapsed=1"];
+export const linkedinPosts = [
+  { title: "The Laravel Request Lifecycle Explained", id: "7281906843088560128" },
+  { title: "PHP-ALT and PHP-EA versions at cPanel", id: "7122785517661782016" },
+  { title: "Reading a person like a book", id: "7099701593217921024" },
+].map((p) => ({ ...p, url: `https://www.linkedin.com/feed/update/urn:li:share:${p.id}` }));
 
 export const technologies = [
   { name: "Laravel", category: "Backend" },

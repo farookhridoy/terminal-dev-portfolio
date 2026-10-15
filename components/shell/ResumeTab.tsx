@@ -24,6 +24,15 @@ function Heading({ icon: Icon, children }: { icon: typeof Briefcase; children: R
   );
 }
 
+// A skill listed in two groups (Docker, Linux) is shown once, in the first group that has it.
+const seen = new Set<string>();
+const groups = skillGroups
+  .map(({ key, label }) => ({
+    label,
+    items: skills[key].filter((s) => (seen.has(s.name) ? false : (seen.add(s.name), true))),
+  }))
+  .filter((g) => g.items.length > 0);
+
 export default function ResumeTab() {
   return (
     <div className="space-y-12">
@@ -80,11 +89,11 @@ export default function ResumeTab() {
       <section aria-label="Skills">
         <Heading icon={Wrench}>Skills and tools</Heading>
         <div className="space-y-5">
-          {skillGroups.map(({ key, label }) => (
-            <div key={key}>
+          {groups.map(({ label, items }) => (
+            <div key={label}>
               <h3 className="mb-2 text-sm font-medium text-muted-foreground">{label}</h3>
               <div className="flex flex-wrap gap-2">
-                {skills[key].map((s) => (
+                {items.map((s) => (
                   <Chip key={s.name}>{s.name}</Chip>
                 ))}
               </div>

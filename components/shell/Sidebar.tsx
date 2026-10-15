@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Briefcase, Mail, Moon, Sun, User, FolderGit2, type LucideIcon } from "lucide-react";
+import { Briefcase, Mail, Moon, Sun, User, FolderGit2, MessageSquareText, type LucideIcon } from "lucide-react";
 import { profile } from "@/lib/content";
 
-export type SectionId = "profile" | "resume" | "work" | "contact";
+export type SectionId = "profile" | "resume" | "work" | "posts" | "contact";
 
 export const navItems: { id: SectionId; label: string; href: string; icon: LucideIcon }[] = [
   { id: "profile", label: "Profile", href: "#profile", icon: User },
   { id: "resume", label: "Resume", href: "#resume", icon: Briefcase },
   { id: "work", label: "Work", href: "#work", icon: FolderGit2 },
+  { id: "posts", label: "Posts", href: "#posts", icon: MessageSquareText },
   { id: "contact", label: "Contact", href: "#contact", icon: Mail },
 ];
 

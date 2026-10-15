@@ -115,6 +115,15 @@
 }
 
 @layer utilities {
+  /* Following the Contact link (or #contact) briefly highlights the contact card. */
+  #contact:target > section:first-child {
+    animation: flash 1.4s ease-out;
+  }
+  @keyframes flash {
+    0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.55); border-color: hsl(var(--primary)); }
+    100% { box-shadow: 0 0 0 14px hsl(var(--primary) / 0); }
+  }
+
   /* A quiet engineering-paper grid for the profile banner. */
   .banner-grid {
     background-image:

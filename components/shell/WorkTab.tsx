@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { ArrowUpRight, Star } from "lucide-react";
 import Chip from "./Chip";
 import { projects, profile } from "@/lib/content";
@@ -45,10 +46,10 @@ function OpenSource() {
                   <span className="truncate font-medium">{r.name}</span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary" />
                 </span>
-                <span className="mt-1.5 line-clamp-2 flex-1 text-sm text-muted-foreground">
-                  {r.description ?? "No description yet."}
-                </span>
-                <span className="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
+                {r.description && (
+                  <span className="mt-1.5 line-clamp-2 flex-1 text-sm text-muted-foreground">{r.description}</span>
+                )}
+                <span className="mt-auto flex items-center gap-3 pt-3 text-xs text-muted-foreground">
                   {r.language && <span>{r.language}</span>}
                   {r.stargazers_count > 0 && (
                     <span className="inline-flex items-center gap-1">
@@ -66,8 +67,12 @@ function OpenSource() {
   );
 }
 
+const FIRST = 6;
+
 export default function WorkTab() {
   const [featured, ...rest] = projects;
+  const [all, setAll] = useState(false);
+  const shown = all ? rest : rest.slice(0, FIRST);
   return (
     <div className="space-y-12">
       <OpenSource />
@@ -89,19 +94,30 @@ export default function WorkTab() {
         </article>
 
         <ul className="grid gap-3 sm:grid-cols-2">
-          {rest.map((p) => (
+          {shown.map((p) => (
             <li key={p.title} className="flex flex-col rounded-2xl border border-border bg-card p-4">
               <p className="text-xs font-medium text-primary">{p.type}</p>
               <h3 className="mt-0.5 font-semibold">{p.title}</h3>
-              <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
+              <p className="mt-1.5 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
-                {p.tech.map((t) => (
+                {p.tech.slice(0, 4).map((t) => (
                   <Chip key={t}>{t}</Chip>
                 ))}
               </div>
             </li>
           ))}
         </ul>
+
+        {rest.length > FIRST && (
+          <button
+            type="button"
+            onClick={() => setAll((v) => !v)}
+            aria-expanded={all}
+            className="mx-auto mt-5 block rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-medium transition-colors hover:border-primary/60"
+          >
+            {all ? "Show fewer projects" : `Show all ${rest.length + 1} projects`}
+          </button>
+        )}
       </section>
     </div>
   );

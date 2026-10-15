@@ -26,9 +26,12 @@ export default function Home() {
     // The address bar (#resume, #work, #posts, #contact) picks the tab, so tabs can be linked to.
     const syncFromHash = useCallback(() => {
         const h = window.location.hash.slice(1);
-        if (isTab(h)) setTab(h);
-        if (h === "resume" || h === "work") setActive(h);
-        else if (h === "posts") setActive("work");
+        if (isTab(h)) {
+            setTab(h);
+            // Nav links point at #resume / #work / #posts, which are not elements, so scroll to the tabs ourselves.
+            requestAnimationFrame(() => document.getElementById("tabs")?.scrollIntoView());
+        }
+        if (h === "resume" || h === "work" || h === "posts") setActive(h);
         else if (h === "contact" || h === "profile") setActive(h);
     }, []);
 
@@ -48,7 +51,7 @@ export default function Home() {
                 for (const e of entries) {
                     if (!e.isIntersecting) continue;
                     if (e.target.id === "profile") setActive("profile");
-                    else setActive(tab === "resume" ? "resume" : "work");
+                    else setActive(tab);
                 }
             },
             { rootMargin: "-40% 0px -55% 0px" },
@@ -60,12 +63,21 @@ export default function Home() {
     function choose(next: Tab) {
         setTab(next);
         history.replaceState(null, "", `#${next}`);
-        setActive(next === "resume" ? "resume" : "work");
+        setActive(next);
+        // Bring the new tab's content into view if the visitor had scrolled far down the previous one.
+        const top = document.getElementById("tabs");
+        if (top && window.scrollY > top.offsetTop) top.scrollIntoView();
     }
 
     return (
         <>
             <StructuredData />
+            <a
+                href="#tabs"
+                className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+            >
+                Skip to content
+            </a>
             <MobileBar active={active} />
             <div className="mx-auto grid min-h-screen max-w-[1500px] lg:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[16rem_minmax(0,1fr)_21rem]">
                 <Sidebar active={active} />
