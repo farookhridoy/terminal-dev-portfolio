@@ -114,7 +114,7 @@ export const products = [
 export const about = [
   "I'm an **ERP technical lead and fintech software engineer** in Dhaka with 8+ years of building multi-module business systems: supply chain, import/export, inventory, production, HR & payroll, document management and finance.",
   "At **Super Star Group** I lead architecture and delivery for enterprise groups including RM Group, MBM Group and Tru Fabric, and I handle the DevOps side too: GitHub Actions pipelines, AWS servers, and rewriting slow SQL on high-volume tables.",
-  "I'm also the **founder of theLaraSoft**, a Dhaka-based agency that designs digital solutions. Alongside client work we build our own products: Dentora for dental clinics, LaraMeet for video meetings and Lara Sequence for bulk email.",
+  "I'm also the **founder of theLaraSoft**, a Dhaka-based agency that designs digital solutions, and **co-founder of Dentora, Tavrix and Lara Sequence**, products we build ourselves: Dentora for dental clinics, Tavrix as a free SSH client for Mac, and Lara Sequence for bulk email. Our LaraMeet app covers video meetings.",
   "I started in 2018 as a junior web developer on e-commerce, payment and courier integrations, and grew through Laravel projects into technical leadership. I like owning a system end to end, from requirements and UAT to deployment.",
 ];
 
@@ -232,6 +232,7 @@ export const technologies = [
 export const profile = {
   name: "MD. Omar Farook Hridoy",
   founderOf: { name: "theLaraSoft", href: "https://thelarasoft.com/" },
+  coFounderOf: ["Dentora", "Tavrix", "Lara Sequence"],
   title: "ERP Technical Lead & Fintech Software Engineer",
   tagline: "Building Enterprise Solutions, One Line at a Time",
   summary: 'Technical Lead and ERP consultant delivering multi-module enterprise systems — SCM, Import/Export, Inventory, Production, HR & Payroll, Document Management, and Finance/Fintech — across enterprise groups including Software Shop Ltd (SSL Commerze, SSL, CGL, OIL, OTL) RM Group, MBM Group, and Tru Fabric, backed by hands-on DevOps and query-level engineering.',

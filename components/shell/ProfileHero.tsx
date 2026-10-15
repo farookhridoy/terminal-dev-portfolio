@@ -80,15 +80,21 @@ export default function ProfileHero() {
 
         <p className="mt-4 text-[15px] italic text-muted-foreground">{profile.tagline}</p>
 
+        <div className="mt-3 flex flex-wrap gap-2">
         <a
           href={profile.founderOf.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground transition-colors hover:border-primary"
+          className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground transition-colors hover:border-primary"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
           Founder of {profile.founderOf.name}
         </a>
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+            Co-founder of {profile.coFounderOf.join(", ")}
+          </span>
+        </div>
 
         <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-muted-foreground">
           <span className="inline-flex items-start gap-1.5">
