@@ -1,10 +1,11 @@
-import { ArrowUpRight, Facebook, Github, Instagram, Linkedin, MessageCircle, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Facebook, Github, Instagram, Linkedin, Mail, MessageCircle, type LucideIcon } from "lucide-react";
 import { profile, socialLinks } from "@/lib/content";
 
 // lucide has no X logo, so X is drawn as a letter.
 const XMark: LucideIcon = (() => <span aria-hidden="true" className="text-sm font-bold leading-none">X</span>) as unknown as LucideIcon;
 
 export const socialIcons: Record<(typeof socialLinks)[number]["id"], LucideIcon> = {
+  email: Mail,
   whatsapp: MessageCircle,
   github: Github,
   linkedin: Linkedin,
@@ -46,8 +47,7 @@ export default function RightRail({ compact = false }: { compact?: boolean }) {
               <li key={id}>
                 <a
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="group flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5 transition-colors hover:border-primary/60"
                 >
                   <span className="grid h-9 w-9 place-items-center rounded-lg bg-secondary text-foreground">

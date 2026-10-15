@@ -46,6 +46,12 @@ export default function ContactPage() {
             LinkedIn
             <ArrowUpRight className="h-4 w-4" />
           </a>
+          <a
+            href={socialLinks.find((l) => l.id === "email")!.href}
+            className="inline-flex items-center gap-2 rounded-full border border-background/30 px-6 py-3 text-sm font-semibold transition-colors hover:bg-background/10"
+          >
+            Email me
+          </a>
         </div>
       </Reveal>
 
@@ -128,8 +134,7 @@ export default function ContactPage() {
               <Reveal as="li" key={l.id} delay={i * 0.04}>
                 <a
                   href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(l.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="group flex items-center gap-3 rounded-2xl border border-border bg-card p-3.5 transition-colors hover:border-primary/60"
                 >
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary">

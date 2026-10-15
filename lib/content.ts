@@ -253,6 +253,7 @@ export const stats = [
 ];
 
 export const socialLinks = [
+  { id: "email", label: "Email", handle: "farookhridoy@gmail.com", href: "mailto:farookhridoy@gmail.com" },
   { id: "whatsapp", label: "WhatsApp", handle: "wa.me/farookhriody", href: "https://wa.me/farookhriody" },
   { id: "github", label: "GitHub", handle: "@farookhridoy", href: "https://github.com/farookhridoy" },
   { id: "linkedin", label: "LinkedIn", handle: "in/farookhridoy", href: "https://linkedin.com/in/farookhridoy" },
