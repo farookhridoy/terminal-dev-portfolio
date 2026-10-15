@@ -133,7 +133,7 @@ export const projects = [
     description: "Comprehensive Project Management solution with risk management, planning, grant charts, project reports, and many more features.",
     tech: ["Laravel", "JavaScript", "MySQL"],
     type: "Management",
-    features: ["Project", "Risk Management", "Planning", "Grant Chart", "Project Report"]
+    features: ["Project", "Risk Management", "Planning", "Gantt Chart", "Project Report"]
   },
   {
     title: "Human Resource Management System",
@@ -358,3 +358,10 @@ export const socialLinks = [
   { id: "facebook", label: "Facebook", handle: "/farookhridoy", href: "https://facebook.com/farookhridoy" },
   { id: "instagram", label: "Instagram", handle: "@farookhridoy", href: "https://instagram.com/farookhridoy" },
 ] as const;
+
+// Shown when a GitHub repository has no description of its own.
+export const repoFallbackDescriptions: Record<string, string> = {
+  tavrix: "SSH terminal, file manager and code editor for Mac, in one window. Free and open source.",
+  "terminal-dev-portfolio": "This portfolio site, built with Next.js and Tailwind CSS.",
+  "approval-matrix-package": "Approval matrix package for Laravel apps.",
+};
