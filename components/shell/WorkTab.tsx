@@ -1,18 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Layers, Star, Tag } from "lucide-react";
 import Chip from "./Chip";
 import ProductCard from "./ProductCard";
 import Reveal from "./Reveal";
-import { liveProjects, projectCategories, products, projects, profile, repoFallbackDescriptions, type ProjectCategory } from "@/lib/content";
+import { hiddenRepos, liveProjects, projectCategories, products, projects, profile, repoFallbackDescriptions, type ProjectCategory } from "@/lib/content";
 import { useGithubRepos, type Repo } from "@/hooks/use-github-repos";
 
 const REPOS_FIRST = 6;
 
 function OpenSource() {
-  const state = useGithubRepos(profile.githubUser);
+  const raw = useGithubRepos(profile.githubUser);
+  const state = useMemo(
+    () => (raw.status === "ready" ? { ...raw, repos: raw.repos.filter((r) => !hiddenRepos.includes(r.name)) } : raw),
+    [raw],
+  );
   const [all, setAll] = useState(false);
   return (
     <section aria-label="Open source on GitHub">

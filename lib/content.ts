@@ -372,3 +372,15 @@ export const liveProjects: {
 export const topSkills = ["ERP Consulting", "Technical Leadership", "Fintech", "DevOps", "Team Leadership"];
 export const aiToolsShort = ["Claude", "ChatGPT", "GitHub Copilot", "Cursor"];
 export const stackShort = ["Laravel", "PHP", "JavaScript", "React", "Next.js", "Vue.js", "Tailwind CSS", "MySQL", "AWS", "Docker", "GitHub Actions", "Git"];
+
+// Own public repositories that are left off the Open source list (course exercises and unfinished experiments).
+export const hiddenRepos = [
+  "docker-assignment-1",
+  "docker-assignment-2",
+  "linux-assignment-01",
+  "linux-assignment-02",
+  "b4-devops-cp-assignment-01",
+  "dockerise-app",
+  "job-portal-app-d",
+  "elk-project-13",
+];
