@@ -311,12 +311,12 @@ export const liveProjects: {
     href: "https://lwt.thelarasoft.com/",
   },
   {
-    name: "CyberSolveIQ CyberDIY",
-    category: "EdTech",
-    line: "Sign-in portal for CyberSolveIQ's CyberDIY assessments platform.",
-    tags: ["Assessments", "Portal"],
+    name: "CyberSolveIQ",
+    category: "SaaS & tools",
+    line: "Cyber security specialists for SMEs: assessments, testing, training, awareness and advice, with an online store and a CyberDIY assessments portal.",
+    tags: ["Cyber security", "SME"],
     image: "/images/projects/cybersolveiq.jpg",
-    href: "https://assessments.cybersolveiq.com/sign-in",
+    href: "https://cybersolveiq.com/",
   },
   {
     name: "Super Star Group",
