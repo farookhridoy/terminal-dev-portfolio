@@ -7,16 +7,22 @@ import Chip from "./Chip";
 import ProductCard from "./ProductCard";
 import Reveal from "./Reveal";
 import { liveProjects, projectCategories, products, projects, profile, repoFallbackDescriptions, type ProjectCategory } from "@/lib/content";
-import { useGithubRepos } from "@/hooks/use-github-repos";
+import { useGithubRepos, type Repo } from "@/hooks/use-github-repos";
+
+const REPOS_FIRST = 6;
 
 function OpenSource() {
   const state = useGithubRepos(profile.githubUser);
+  const [all, setAll] = useState(false);
   return (
     <section aria-label="Open source on GitHub">
       <div className="mb-5 flex items-end justify-between gap-4">
         <div>
           <p className="eyebrow">GitHub</p>
           <h2 className="mt-1 text-2xl font-bold tracking-tight">Open source</h2>
+          {state.status === "ready" && (
+            <p className="mt-1 text-sm text-muted-foreground">{state.repos.length} public repositories of my own.</p>
+          )}
         </div>
         <a
           href={`https://github.com/${profile.githubUser}?tab=repositories`}
@@ -39,42 +45,87 @@ function OpenSource() {
         </p>
       )}
       {state.status === "ready" && (
-        <ul className="grid gap-3 sm:grid-cols-2">
-          {state.repos.map((r) => (
-            <li key={r.name}>
-              <a
-                href={r.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-full flex-col rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/60"
-              >
-                <span className="flex items-center justify-between gap-2">
-                  <span className="truncate font-medium">{r.name}</span>
-                  <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary" />
-                </span>
-                <span className="mt-1.5 line-clamp-2 flex-1 text-sm text-muted-foreground">
-                  {r.description ?? repoFallbackDescriptions[r.name] ?? ""}
-                </span>
-                <span className="mt-auto flex items-center gap-3 pt-3 text-xs text-muted-foreground">
-                  {r.language && (
-                    <span className="inline-flex items-center gap-1.5">
-                      <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-                      {r.language}
+        <>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {state.repos.slice(0, REPOS_FIRST).map((r) => (
+              <li key={r.name}>
+                <a
+                  href={r.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-full flex-col rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/60"
+                >
+                  <span className="flex items-center justify-between gap-2">
+                    <span className="truncate font-medium">{r.name}</span>
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary" />
+                  </span>
+                  <span className="mt-1.5 line-clamp-2 flex-1 text-sm text-muted-foreground">
+                    {r.description ?? repoFallbackDescriptions[r.name] ?? ""}
+                  </span>
+                  <RepoMeta r={r} />
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {all && (
+            <ul className="mt-3 divide-y divide-border rounded-2xl border border-border bg-card">
+              {state.repos.slice(REPOS_FIRST).map((r) => (
+                <li key={r.name}>
+                  <a
+                    href={r.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 px-4 py-3 transition-colors hover:bg-secondary/60"
+                  >
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-medium">{r.name}</span>
+                      {(r.description ?? repoFallbackDescriptions[r.name]) && (
+                        <span className="block truncate text-xs text-muted-foreground">
+                          {r.description ?? repoFallbackDescriptions[r.name]}
+                        </span>
+                      )}
                     </span>
-                  )}
-                  {r.stargazers_count > 0 && (
-                    <span className="inline-flex items-center gap-1">
-                      <Star className="h-3.5 w-3.5" />
-                      {r.stargazers_count}
-                    </span>
-                  )}
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
+                    <RepoMeta r={r} inline />
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {state.repos.length > REPOS_FIRST && (
+            <button
+              type="button"
+              onClick={() => setAll((v) => !v)}
+              aria-expanded={all}
+              className="mx-auto mt-5 block rounded-full border border-border bg-card px-6 py-2.5 text-sm font-medium transition-colors hover:border-primary/60"
+            >
+              {all ? "Show fewer repositories" : `Show all ${state.repos.length} repositories`}
+            </button>
+          )}
+        </>
       )}
     </section>
+  );
+}
+
+function RepoMeta({ r, inline = false }: { r: Repo; inline?: boolean }) {
+  return (
+    <span className={`flex items-center gap-3 text-xs text-muted-foreground ${inline ? "shrink-0" : "mt-auto pt-3"}`}>
+      {r.language && (
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+          {r.language}
+        </span>
+      )}
+      {r.stargazers_count > 0 && (
+        <span className="inline-flex items-center gap-1">
+          <Star className="h-3.5 w-3.5" />
+          {r.stargazers_count}
+        </span>
+      )}
+    </span>
   );
 }
 
