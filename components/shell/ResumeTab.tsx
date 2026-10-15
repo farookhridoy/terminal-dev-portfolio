@@ -1,5 +1,6 @@
 import { Briefcase, GraduationCap, Languages, MapPin, Target, User, Wrench } from "lucide-react";
 import Chip from "./Chip";
+import ToolChip from "./ToolChip";
 import Rich from "./Rich";
 import Reveal from "./Reveal";
 import LocalClock from "./LocalClock";
@@ -123,14 +124,12 @@ export default function ResumeTab() {
           <Heading icon={Wrench}>Skills and tools</Heading>
           <div className="flex flex-wrap gap-2.5">
             {aiToolsShort.map((t) => (
-              <Chip key={t} tone="accent">
-                {t}
-              </Chip>
+              <ToolChip key={t} name={t} tone="accent" />
             ))}
           </div>
           <div className="mt-2.5 flex flex-wrap gap-2.5">
             {stackShort.map((t) => (
-              <Chip key={t}>{t}</Chip>
+              <ToolChip key={t} name={t} />
             ))}
           </div>
         </div>

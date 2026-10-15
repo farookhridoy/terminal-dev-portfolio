@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Briefcase, Share2, Check } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Chip from "./Chip";
+import ToolChip from "./ToolChip";
 import CountUp from "./CountUp";
 import ContributionBanner from "./ContributionBanner";
 import { aiToolsShort, profile, stats, technologies } from "@/lib/content";
@@ -106,15 +106,13 @@ export default function ProfileHero() {
 
         <div className="mt-4 flex flex-wrap gap-2" aria-label="AI tools I work with">
           {aiToolsShort.map((t) => (
-            <Chip key={t} tone="accent">
-              {t}
-            </Chip>
+            <ToolChip key={t} name={t} tone="accent" />
           ))}
         </div>
 
         <div className="mt-2 flex flex-wrap gap-2" aria-label="Core technologies">
           {technologies.slice(0, 10).map((t) => (
-            <Chip key={t.name}>{t.name}</Chip>
+            <ToolChip key={t.name} name={t.name} />
           ))}
         </div>
 
