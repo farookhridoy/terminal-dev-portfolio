@@ -50,10 +50,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "terminal-cyan": "hsl(var(--terminal-cyan))",
-        "terminal-purple": "hsl(var(--terminal-purple))",
-        "terminal-yellow": "hsl(var(--terminal-yellow))",
-        "terminal-orange": "hsl(var(--terminal-orange))",
+        success: "hsl(var(--success))",
       },
       borderRadius: {
         lg: "var(--radius)",
